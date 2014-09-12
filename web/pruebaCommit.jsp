@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World! :v (o.o) </h1>
+        <h1>Que pedits?!?! </h1>
     </body>
 </html>
