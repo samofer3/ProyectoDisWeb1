@@ -8,3 +8,69 @@ and open the template in the editor.
     Author     : ferna_000
 */
 
+body{
+    background: rgba(5, 243, 235, 0.2);
+    font-size: 16px;
+}
+
+header{
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid black;
+}
+
+header figure{
+    display: inline-block;
+    margin: 1em 0 0.5em 0;
+    
+}
+
+header figure img{
+    border-radius: 8px;
+    box-shadow: 6px 6px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+header #logo{
+    width: 10%;
+    border-right: 1px solid black;
+}
+
+header #banner{
+    width: 85%;
+}
+
+footer{
+    border-top: 1px dotted black;
+    margin-left: 1em;
+    text-align: center;
+    width: 97%;
+}
+
+nav, section{
+    display: inline-block;
+}
+
+nav{
+    margin: 0.2em 0.5em 0.5em 0.2em;
+    vertical-align: top;
+    width: 10%;
+}
+
+nav ul{
+    border: 2px solid black;
+    border-radius: 8px;
+    list-style: none;
+    padding: 0.1em;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+section{
+    width: 88%;
+}
+
+.center{
+    text-align: center;
+}
