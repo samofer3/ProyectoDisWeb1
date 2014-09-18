@@ -51,9 +51,9 @@
             </s:form>
         </section>
         <footer>
-            <p>Varios <a href="colaboradores.html">colaboradores</a></p>
+            <p>Varios colaboradores</p>
             <p>Proyecto 2014</p>
-            <p>Dirección: Calle casa de erick</p>
+            <p>Arquitecturas de Desarrollo Web</p>
         </footer>
     </body>
     </body>

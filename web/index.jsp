@@ -50,9 +50,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
         </section>
         <footer>
-            <p>Varios <a href="colaboradores.html">colaboradores</a></p>
+            <p>Varios colaboradores</p>
             <p>Proyecto 2014</p>
-            <p>Dirección: Calle casa de erick</p>
+            <p>Arquitecturas de Desarrollo Web</p>
         </footer>
     </body>
     </body>
