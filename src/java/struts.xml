@@ -8,14 +8,11 @@
     <constant name="struts.configuration.xml.reload" value="true" />
   
     <package name="demo-struts" extends="struts-default">
-        <action name="cliente">
-            <result>/cliente.jsp</result>
-        </action>
-        <action name="administrar">
-            <result>/administrar.jsp</result>
-        </action>
         <action name="index">
             <result>/index.jsp</result>
+        </action>
+        <action name="login">
+            <result>/login.jsp</result>
         </action>
     </package>
     

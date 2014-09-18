@@ -1,10 +1,11 @@
 <%-- 
-    Document   : index
-    Created on : 11/09/2014, 09:16:01 PM
+    Document   : login
+    Created on : 17/09/2014, 10:08:54 PM
     Author     : ferna_000
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,12 +43,12 @@
                 <li class="center"><a href="login" >Administrar</a></li>
             </ul>
         </nav>
-        <section>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
+        <section id="login">
+            <s:form action="loguear">
+                <s:textfield name="user" label="Usuario" />
+                <s:password name="password" label="Password" />
+                <s:submit value="Enviar"/>
+            </s:form>
         </section>
         <footer>
             <p>Varios <a href="colaboradores.html">colaboradores</a></p>
