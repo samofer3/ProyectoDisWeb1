@@ -14,6 +14,10 @@
         <action name="login">
             <result>/login.jsp</result>
         </action>
+        <action name="loguear" class="com.proyecto.principal.loginAction">
+            <result name="success">/valido.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
     </package>
     
 </struts>
