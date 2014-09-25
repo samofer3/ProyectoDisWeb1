@@ -7,7 +7,12 @@ public class loginAction extends ActionSupport{
     
     @Override
     public String execute(){
-        if(user.equals("usuario")&& password.equals("12345")){
+        if((user.equals("usuario")&& password.equals("12345")) ||
+                (user.equals("admin")&& password.equals("amin")) ||
+                (user.equals("usuario")&& password.equals("password")) || 
+                user.equals("vanessa")&& password.equals("root") ||
+                user.equals("ceo")&& password.equals("ceo")
+                ){
             return SUCCESS;//"success"
         
         } else{
@@ -24,7 +29,6 @@ public class loginAction extends ActionSupport{
         if(password.equals("")){
             addFieldError("password","Digite password por favor");
         }
-        
     }
     
 

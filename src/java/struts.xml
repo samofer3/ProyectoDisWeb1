@@ -8,16 +8,15 @@
     <constant name="struts.configuration.xml.reload" value="true" />
   
     <package name="demo-struts" extends="struts-default">
-        <action name="index">
+        <action name="index" class="com.proyecto.principal.control">
             <result>/index.jsp</result>
         </action>
-        <action name="login">
+        <action name="login" class="com.proyecto.principal.control">
             <result>/login.jsp</result>
         </action>
         <action name="loguear" class="com.proyecto.principal.loginAction">
-            <result name="success">/valido.jsp</result>
+            <result name="success">/administrar.jsp</result>
             <result name="input">/login.jsp</result>
         </action>
     </package>
-    
 </struts>

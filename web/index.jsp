@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,6 @@
         <script src="js/prefixfree.js"></script>
     </head>
     <body>
-        <body>
         <header>
             <figure id="logo">
                 <img src="img/Logo.png" alt="Logo" height="80px">
@@ -27,33 +27,16 @@
         </header>
         <nav>
             <ul>
-                <li><a href="index">Inicio</a></li>
-                <li><a href="#">Opcion 1</a></li>
-                <li><a href="#">Opcion 2</a></li>
-                <li><a href="#">Opcion 3</a></li>
-                <li><a href="#">Opcion 4</a></li>
-                <li><a href="#">Opcion 5</a></li>
-                <li><a href="#">Opcion 6</a></li>
-                <li><a href="#">Opcion 7</a></li>
-                <li><a href="#">Opcion 8</a></li>
-                <li><a href="#">Opcion 9</a></li>
-                </br>
-                </br>
-                <li class="center"><a href="login" >Administrar</a></li>
+                <s:property value="menu" escapeHtml="false"/>
             </ul>
         </nav>
-        <section>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui exercitationem tempora vitae necessitatibus aliquam maiores debitis, dolor reiciendis aut illo non nesciunt sequi praesentium dignissimos nostrum placeat deleniti rerum sunt.</p>
+        <section id="s-articulos">
+            <s:property value="contenido" escapeHtml="false"/>
         </section>
         <footer>
             <p>Varios colaboradores</p>
             <p>Proyecto 2014</p>
             <p>Arquitecturas de Desarrollo Web</p>
         </footer>
-    </body>
     </body>
 </html>
