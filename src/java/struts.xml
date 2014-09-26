@@ -8,15 +8,35 @@
     <constant name="struts.configuration.xml.reload" value="true" />
   
     <package name="demo-struts" extends="struts-default">
+        <interceptors>
+            <interceptor name="myInterceptor" class="com.proyecto.principal.myInterceptor"></interceptor>
+            <interceptor-stack name="miPilaInterceptor">
+                <interceptor-ref name="myInterceptor"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="miPilaInterceptor"></default-interceptor-ref>
+        <global-results>
+            <result name="login">/error.jsp</result>
+            <result name="success">/error.jsp</result>
+        </global-results>
+        
         <action name="index" class="com.proyecto.principal.control">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
             <result>/index.jsp</result>
         </action>
         <action name="login" class="com.proyecto.principal.control">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
             <result>/login.jsp</result>
         </action>
         <action name="loguear" class="com.proyecto.principal.loginAction">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
             <result name="success">/administrar.jsp</result>
             <result name="input">/login.jsp</result>
+        </action>
+        <action name="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/administrar.jsp</result>
         </action>
     </package>
 </struts>
