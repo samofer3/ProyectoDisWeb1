@@ -4,7 +4,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-CREATE DATABASE proyecto;
+CREATE DATABASE proyecto DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE proyecto;
 
@@ -50,7 +50,7 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo` (
 
   `categoria_id_categoria` INT NOT NULL ,
 
-  PRIMARY KEY (`id_articulo`, `categoria_id_categoria`) ,
+  PRIMARY KEY (`id_articulo`) ,
 
   INDEX `fk_articulo_categoria` (`categoria_id_categoria` ASC) ,
 
@@ -112,7 +112,7 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`comentarios` (
 
   `articulo_id_articulo` INT NOT NULL ,
 
-  PRIMARY KEY (`id_comentarios`, `articulo_id_articulo`) ,
+  PRIMARY KEY (`id_comentarios`) ,
 
   INDEX `fk_comentarios_articulo1` (`articulo_id_articulo` ASC) ,
 
@@ -150,7 +150,7 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`usuario` (
 
   `sucursal_id_sucursal` INT NOT NULL ,
 
-  PRIMARY KEY (`id_usuario`, `sucursal_id_sucursal`) ,
+  PRIMARY KEY (`id_usuario`) ,
 
   INDEX `fk_usuario_sucursal1` (`sucursal_id_sucursal` ASC) ,
 
@@ -194,39 +194,39 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `proyecto`.`sucursal_articulo`
+-- Table `proyecto`.`articulo_sucursal`
 
 -- -----------------------------------------------------
 
-CREATE  TABLE IF NOT EXISTS `proyecto`.`sucursal_articulo` (
+CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo_sucursal` (
 
   `unidad` INT NOT NULL ,
 
-  `sucursal_id_sucursal` INT NOT NULL ,
-
   `articulo_id_articulo` INT NOT NULL ,
 
-  PRIMARY KEY (`sucursal_id_sucursal`, `articulo_id_articulo`) ,
+  `sucursal_id_sucursal` INT NOT NULL ,
 
-  INDEX `fk_sucursal_has_articulo_articulo1` (`articulo_id_articulo` ASC, `unidad` ASC) ,
+  INDEX `fk_articulo_has_sucursal_sucursal1` (`sucursal_id_sucursal` ASC) ,
 
-  INDEX `fk_sucursal_has_articulo_sucursal1` (`sucursal_id_sucursal` ASC) ,
+  INDEX `fk_articulo_has_sucursal_articulo1` (`articulo_id_articulo` ASC) ,
 
-  CONSTRAINT `fk_sucursal_has_articulo_sucursal1`
+  PRIMARY KEY (`articulo_id_articulo`, `sucursal_id_sucursal`) ,
 
-    FOREIGN KEY (`sucursal_id_sucursal` )
+  CONSTRAINT `fk_articulo_has_sucursal_articulo1`
 
-    REFERENCES `proyecto`.`sucursal` (`id_sucursal` )
+    FOREIGN KEY (`articulo_id_articulo` )
+
+    REFERENCES `proyecto`.`articulo` (`id_articulo` )
 
     ON DELETE NO ACTION
 
     ON UPDATE NO ACTION,
 
-  CONSTRAINT `fk_sucursal_has_articulo_articulo1`
+  CONSTRAINT `fk_articulo_has_sucursal_sucursal1`
 
-    FOREIGN KEY (`articulo_id_articulo` , `unidad` )
+    FOREIGN KEY (`sucursal_id_sucursal` )
 
-    REFERENCES `proyecto`.`articulo` (`id_articulo` , `categoria_id_categoria` )
+    REFERENCES `proyecto`.`sucursal` (`id_sucursal` )
 
     ON DELETE NO ACTION
 

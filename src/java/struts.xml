@@ -15,28 +15,29 @@
                 <interceptor-ref name="defaultStack"></interceptor-ref>
             </interceptor-stack>
         </interceptors>
-        <default-interceptor-ref name="miPilaInterceptor"></default-interceptor-ref>
+        <default-interceptor-ref name="defaultStack"></default-interceptor-ref>
         <global-results>
             <result name="login">/error.jsp</result>
             <result name="success">/error.jsp</result>
         </global-results>
         
-        <action name="index" class="com.proyecto.principal.control">
-            <interceptor-ref name="defaultStack"></interceptor-ref>
+        <action name="index" class="com.proyecto.principal.control" method="principal">
             <result>/index.jsp</result>
         </action>
-        <action name="login" class="com.proyecto.principal.control">
-            <interceptor-ref name="defaultStack"></interceptor-ref>
+        <action name="login" class="com.proyecto.principal.control" method="principal">
             <result>/login.jsp</result>
         </action>
         <action name="loguear" class="com.proyecto.principal.loginAction">
-            <interceptor-ref name="defaultStack"></interceptor-ref>
-            <result name="success">/administrar.jsp</result>
+            <result name="success" type="redirect">administrar</result>
             <result name="input">/login.jsp</result>
         </action>
-        <action name="administrar">
+        <action name="administrar" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result>/administrar.jsp</result>
+            <result name="success">/administrar.jsp</result>
+        </action>
+        <action name="sucursal" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/registrarSucursal.jsp</result>
         </action>
     </package>
 </struts>

@@ -14,13 +14,20 @@ import com.opensymphony.xwork2.ActionSupport;
 public class control extends ActionSupport{
     private String menu;
     private String contenido;
-    private menuAction menuAction = new menuAction();
-    private contenidoAction contenidoAction = new contenidoAction();
-    public String execute(){
+    private menuAction menuAction = new menuAction(); //GENERA EL MENU DE LA IZQUIERDA
+    private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LOS ARTICULOS
+    public String principal(){
         menuAction.generarMenu();
         menu = menuAction.getMenu();
         contenidoAction.generarContenido();
         contenido = contenidoAction.getContenido();
+        return SUCCESS;
+    }
+    public String administrar(){
+        System.out.println("Entra aqui");
+        menuAction.generarMenuAdministrador();
+        menu = menuAction.getMenu();
+        System.out.println("" + menu);
         return SUCCESS;
     }
 

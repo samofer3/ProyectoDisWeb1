@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/10/2014 10:08:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.principal.ArticuloSucursal" table="articulo_sucursal" catalog="proyecto" optimistic-lock="version">
+        <composite-id name="id" class="com.proyecto.principal.ArticuloSucursalId">
+            <key-property name="articuloIdArticulo" type="int">
+                <column name="articulo_id_articulo" />
+            </key-property>
+            <key-property name="sucursalIdSucursal" type="int">
+                <column name="sucursal_id_sucursal" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="articulo" class="com.proyecto.principal.Articulo" update="false" insert="false" fetch="select">
+            <column name="articulo_id_articulo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursal" class="com.proyecto.principal.Sucursal" update="false" insert="false" fetch="select">
+            <column name="sucursal_id_sucursal" not-null="true" />
+        </many-to-one>
+        <property name="unidad" type="int">
+            <column name="unidad" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

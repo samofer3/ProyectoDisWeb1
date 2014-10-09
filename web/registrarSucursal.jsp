@@ -1,6 +1,6 @@
 <%-- 
-    Document   : administrar
-    Created on : 24/09/2014, 10:11:42 PM
+    Document   : registrarSucursal
+    Created on : 8/10/2014, 10:14:41 PM
     Author     : ferna_000
 --%>
 
@@ -10,7 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Administración</title>
+        <meta name="description" content="Sistema de control de inventario" />
+        <title>Registrar Sucursal</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/estilos.css">
         <script src="js/prefixfree.js"></script>
@@ -29,8 +30,15 @@
                 <s:property value="menu" escapeHtml="false"/>
             </ul>
         </nav>
-        <section>
-            
+        <section id="login">
+            <h1>Registra una nueva sucursal</h1>
+            <s:form action="loguear" validate="true" method="post" namespace="action">
+                <s:textfield name="nombre_sucursal" label="Nombre Surcursal" />
+                <s:textfield name="direccion" label="Dirección" />
+                <s:textfield name="numero_telefonico" type="number" label="Numero Telefonico" />
+                <s:textfield name="email" type="email" label="E-mail" />
+                <s:submit value="Registrar"/>
+            </s:form>
         </section>
         <footer>
             <p>Varios colaboradores</p>
