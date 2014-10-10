@@ -32,11 +32,12 @@
         </nav>
         <section id="login">
             <h1>Registra una nueva sucursal</h1>
-            <s:form action="loguear" validate="true" method="post" namespace="action">
-                <s:textfield name="nombre_sucursal" label="Nombre Surcursal" />
-                <s:textfield name="direccion" label="Dirección" />
-                <s:textfield name="numero_telefonico" type="number" label="Numero Telefonico" />
-                <s:textfield name="email" type="email" label="E-mail" />
+            <s:form action="registrarSucursal" method="post">
+                <s:textfield name="id_sucursal" type="hidden"/>
+                <s:textfield name="nombre_sucursal" label="Nombre Surcursal" required="true"/>
+                <s:textfield name="direccion" label="Dirección" required="true"/>
+                <s:textfield name="numero_telefonico" type="number" label="Numero Telefonico" required="true"/>
+                <s:textfield name="email" type="email" label="E-mail" required="true"/>
                 <s:submit value="Registrar"/>
             </s:form>
         </section>

@@ -8,6 +8,7 @@
     <constant name="struts.configuration.xml.reload" value="true" />
   
     <package name="demo-struts" extends="struts-default">
+        <!-- INTERCEPTORES -->
         <interceptors>
             <interceptor name="myInterceptor" class="com.proyecto.principal.myInterceptor"></interceptor>
             <interceptor-stack name="miPilaInterceptor">
@@ -20,10 +21,15 @@
             <result name="login">/error.jsp</result>
             <result name="success">/error.jsp</result>
         </global-results>
+        <!-- FIN INTERCEPTORES -->
         
+        <!-- SECCION INDEX -->
         <action name="index" class="com.proyecto.principal.control" method="principal">
             <result>/index.jsp</result>
         </action>
+        <!-- FIN SECCION INDEX -->
+        
+        <!-- SECCION LOGIN -->
         <action name="login" class="com.proyecto.principal.control" method="principal">
             <result>/login.jsp</result>
         </action>
@@ -31,13 +37,24 @@
             <result name="success" type="redirect">administrar</result>
             <result name="input">/login.jsp</result>
         </action>
+        <!-- FIN SECCION LOGIN -->
+        
+        <!-- SECCION INICIO ADMINISTRAR -->
         <action name="administrar" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success">/administrar.jsp</result>
         </action>
+        <!-- FIN SECCION INICIO ADMINISTRAR -->
+        
+        <!-- SECCION SUCURSAL -->
         <action name="sucursal" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/registrarSucursal.jsp</result>
         </action>
+        <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/administrar.jsp</result>
+        </action>
+        <!-- FIN SECCION SUCURSAL -->
     </package>
 </struts>

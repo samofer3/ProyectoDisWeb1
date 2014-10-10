@@ -24,10 +24,8 @@ public class control extends ActionSupport{
         return SUCCESS;
     }
     public String administrar(){
-        System.out.println("Entra aqui");
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
-        System.out.println("" + menu);
         return SUCCESS;
     }
 

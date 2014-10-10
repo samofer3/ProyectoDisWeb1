@@ -4,9 +4,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-CREATE DATABASE proyecto DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE SCHEMA IF NOT EXISTS `proyecto` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
-USE proyecto;
+USE `proyecto` ;
 
 
 
@@ -18,11 +18,11 @@ USE proyecto;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`categoria` (
 
-  `id_categoria` INT NOT NULL AUTO_INCREMENT ,
+  `idCategoria` INT NOT NULL AUTO_INCREMENT ,
 
-  `nombre_categoria` VARCHAR(45) NULL ,
+  `nombreCategoria` VARCHAR(45) NULL ,
 
-  PRIMARY KEY (`id_categoria`) )
+  PRIMARY KEY (`idCategoria`) )
 
 ENGINE = InnoDB;
 
@@ -38,27 +38,27 @@ ENGINE = InnoDB;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo` (
 
-  `id_articulo` INT NOT NULL AUTO_INCREMENT ,
+  `idArticulo` INT NOT NULL AUTO_INCREMENT ,
 
-  `nombre_articulo` VARCHAR(45) NOT NULL ,
+  `nombreArticulo` VARCHAR(45) NOT NULL ,
 
   `descripcion` VARCHAR(200) NOT NULL ,
 
-  `direccion_img` VARCHAR(50) NOT NULL ,
+  `direccionImg` VARCHAR(50) NOT NULL ,
 
   `precio` FLOAT NOT NULL ,
 
-  `categoria_id_categoria` INT NOT NULL ,
+  `categoriaIdCategoria` INT NOT NULL ,
 
-  PRIMARY KEY (`id_articulo`) ,
+  PRIMARY KEY (`idArticulo`) ,
 
-  INDEX `fk_articulo_categoria` (`categoria_id_categoria` ASC) ,
+  INDEX `fk_articulo_categoria` (`categoriaIdCategoria` ASC) ,
 
   CONSTRAINT `fk_articulo_categoria`
 
-    FOREIGN KEY (`categoria_id_categoria` )
+    FOREIGN KEY (`categoriaIdCategoria` )
 
-    REFERENCES `proyecto`.`categoria` (`id_categoria` )
+    REFERENCES `proyecto`.`categoria` (`idCategoria` )
 
     ON DELETE NO ACTION
 
@@ -78,17 +78,17 @@ ENGINE = InnoDB;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`sucursal` (
 
-  `id_sucursal` INT NOT NULL AUTO_INCREMENT ,
+  `idSucursal` INT NOT NULL AUTO_INCREMENT ,
 
-  `nombre_sucursal` VARCHAR(45) NOT NULL ,
+  `nombreSucursal` VARCHAR(45) NOT NULL ,
 
   `direccion` VARCHAR(100) NOT NULL ,
 
-  `numero_telefonico` INT(15) NOT NULL ,
+  `numeroTelefonico` INT(15) NOT NULL ,
 
   `email` VARCHAR(45) NOT NULL ,
 
-  PRIMARY KEY (`id_sucursal`) )
+  PRIMARY KEY (`idSucursal`) )
 
 ENGINE = InnoDB;
 
@@ -104,23 +104,23 @@ ENGINE = InnoDB;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`comentarios` (
 
-  `id_comentarios` INT NOT NULL AUTO_INCREMENT ,
+  `idComentarios` INT NOT NULL AUTO_INCREMENT ,
 
   `comentario` VARCHAR(300) NOT NULL ,
 
   `autor` VARCHAR(45) NOT NULL ,
 
-  `articulo_id_articulo` INT NOT NULL ,
+  `articuloIdArticulo` INT NOT NULL ,
 
-  PRIMARY KEY (`id_comentarios`) ,
+  PRIMARY KEY (`idComentarios`) ,
 
-  INDEX `fk_comentarios_articulo1` (`articulo_id_articulo` ASC) ,
+  INDEX `fk_comentarios_articulo1` (`articuloIdArticulo` ASC) ,
 
   CONSTRAINT `fk_comentarios_articulo1`
 
-    FOREIGN KEY (`articulo_id_articulo` )
+    FOREIGN KEY (`articuloIdArticulo` )
 
-    REFERENCES `proyecto`.`articulo` (`id_articulo` )
+    REFERENCES `proyecto`.`articulo` (`idArticulo` )
 
     ON DELETE NO ACTION
 
@@ -140,25 +140,25 @@ ENGINE = InnoDB;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`usuario` (
 
-  `id_usuario` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL AUTO_INCREMENT ,
 
-  `nombre_usuario` VARCHAR(40) NOT NULL ,
+  `nombreUsuario` VARCHAR(40) NOT NULL ,
 
   `password` VARCHAR(20) NOT NULL ,
 
   `permiso` CHAR NOT NULL ,
 
-  `sucursal_id_sucursal` INT NOT NULL ,
+  `sucursalIdSucursal` INT NOT NULL ,
 
-  PRIMARY KEY (`id_usuario`) ,
+  PRIMARY KEY (`idUsuario`) ,
 
-  INDEX `fk_usuario_sucursal1` (`sucursal_id_sucursal` ASC) ,
+  INDEX `fk_usuario_sucursal1` (`sucursalIdSucursal` ASC) ,
 
   CONSTRAINT `fk_usuario_sucursal1`
 
-    FOREIGN KEY (`sucursal_id_sucursal` )
+    FOREIGN KEY (`sucursalIdSucursal` )
 
-    REFERENCES `proyecto`.`sucursal` (`id_sucursal` )
+    REFERENCES `proyecto`.`sucursal` (`idSucursal` )
 
     ON DELETE NO ACTION
 
@@ -178,13 +178,13 @@ ENGINE = InnoDB;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`empresa` (
 
-  `nombre_empresa` VARCHAR(80) NOT NULL ,
+  `nombreEmpresa` VARCHAR(80) NOT NULL ,
 
-  `fondo_color` VARCHAR(10) NULL ,
+  `fondoColor` VARCHAR(10) NULL ,
 
-  `fondo_imagen` VARCHAR(50) NULL DEFAULT 'img/Fondo.png' ,
+  `fondoImagen` VARCHAR(50) NULL DEFAULT 'img/Fondo.png' ,
 
-  PRIMARY KEY (`nombre_empresa`) )
+  PRIMARY KEY (`nombreEmpresa`) )
 
 ENGINE = InnoDB;
 
@@ -194,29 +194,29 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `proyecto`.`articulo_sucursal`
+-- Table `proyecto`.`articuloSucursal`
 
 -- -----------------------------------------------------
 
-CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo_sucursal` (
+CREATE  TABLE IF NOT EXISTS `proyecto`.`articuloSucursal` (
 
   `unidad` INT NOT NULL ,
 
-  `articulo_id_articulo` INT NOT NULL ,
+  `articuloIdArticulo` INT NOT NULL ,
 
-  `sucursal_id_sucursal` INT NOT NULL ,
+  `sucursalIdSucursal` INT NOT NULL ,
 
-  INDEX `fk_articulo_has_sucursal_sucursal1` (`sucursal_id_sucursal` ASC) ,
+  INDEX `fk_articulo_has_sucursal_sucursal1` (`sucursalIdSucursal` ASC) ,
 
-  INDEX `fk_articulo_has_sucursal_articulo1` (`articulo_id_articulo` ASC) ,
+  INDEX `fk_articulo_has_sucursal_articulo1` (`articuloIdArticulo` ASC) ,
 
-  PRIMARY KEY (`articulo_id_articulo`, `sucursal_id_sucursal`) ,
+  PRIMARY KEY (`articuloIdArticulo`, `sucursalIdSucursal`) ,
 
   CONSTRAINT `fk_articulo_has_sucursal_articulo1`
 
-    FOREIGN KEY (`articulo_id_articulo` )
+    FOREIGN KEY (`articuloIdArticulo` )
 
-    REFERENCES `proyecto`.`articulo` (`id_articulo` )
+    REFERENCES `proyecto`.`articulo` (`idArticulo` )
 
     ON DELETE NO ACTION
 
@@ -224,9 +224,9 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo_sucursal` (
 
   CONSTRAINT `fk_articulo_has_sucursal_sucursal1`
 
-    FOREIGN KEY (`sucursal_id_sucursal` )
+    FOREIGN KEY (`sucursalIdSucursal` )
 
-    REFERENCES `proyecto`.`sucursal` (`id_sucursal` )
+    REFERENCES `proyecto`.`sucursal` (`idSucursal` )
 
     ON DELETE NO ACTION
 
