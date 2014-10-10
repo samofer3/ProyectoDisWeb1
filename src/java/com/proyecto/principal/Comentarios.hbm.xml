@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9/10/2014 09:43:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.principal.Comentarios" table="comentarios" catalog="proyecto" optimistic-lock="version">
+        <id name="idComentarios" type="java.lang.Integer">
+            <column name="idComentarios" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="articulo" class="com.proyecto.principal.Articulo" fetch="select">
+            <column name="articuloIdArticulo" not-null="true" />
+        </many-to-one>
+        <property name="comentario" type="string">
+            <column name="comentario" length="300" not-null="true" />
+        </property>
+        <property name="autor" type="string">
+            <column name="autor" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

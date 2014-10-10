@@ -32,12 +32,10 @@
         </nav>
         <section id="login">
             <h1>Registra una nueva sucursal</h1>
-            <s:form action="registrarSucursal">
-                <s:textfield name="idSucursal" type="hidden"/>
-                <s:textfield name="nombreSucursal" label="Nombre Surcursal" required="true"/>
-                <s:textfield name="direccion" label="Dirección" required="true"/>
-                <s:textfield name="numeroTelefonico" type="number" label="Numero Telefonico" required="true"/>
-                <s:textfield name="email" type="email" label="E-mail" required="true"/>
+            <s:form action="modificarEmpresa">
+                <s:textfield name="nombreEmpresa" label="Nombre Empresa" required="true"/>
+                <s:textfield name="fondoColor" label="Color de fondo" required="true" type="color"/>
+                <s:textfield name="fondoImagen" label="Imagen" required="true" type="image"/>
                 <s:submit value="Registrar"/>
             </s:form>
         </section>

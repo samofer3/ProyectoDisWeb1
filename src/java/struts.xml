@@ -54,7 +54,19 @@
         <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success">/administrar.jsp</result>
+            <result name="input">/administrar.jsp</result>
         </action>
         <!-- FIN SECCION SUCURSAL -->
+        
+        <!-- SECCION EMPRESA -->
+        <action name="empresa" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/modificarEmpresa.jsp</result>
+        </action>
+        <action name="modificarEmpresa" class="com.proyecto.principal.ControlEmpresa" method="agregaDatos">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/modificarEmpresa.jsp</result>
+        </action>
+        <!-- FIN SECCION EMPRESA -->
     </package>
 </struts>

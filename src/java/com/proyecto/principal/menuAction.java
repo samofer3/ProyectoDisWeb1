@@ -20,7 +20,7 @@ public class menuAction extends ActionSupport{
         menu += "\t\t\t\t<li><a href='sucursal'>Administrar Sucursal</a></li>\n";
         menu += "\t\t\t\t<li><a href='#'>Administrar Articulos</a></li>\n";
         menu += "\t\t\t\t<li><a href='#'>Administrar Categorias</a></li>\n";
-        menu += "\t\t\t\t<li><a href='#'>Administrar Pagina</a></li>\n";
+        menu += "\t\t\t\t<li><a href='empresa'>Administrar Pagina</a></li>\n";
         menu += "\t\t\t\t<li><a href='#'>Administrar Usuarios</a></li>\n";
         menu += "\t\t\t\t</br>\n";
         menu += "\t\t\t\t</br>\n";

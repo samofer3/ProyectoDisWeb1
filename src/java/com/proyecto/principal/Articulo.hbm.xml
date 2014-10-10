@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9/10/2014 09:43:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.principal.Articulo" table="articulo" catalog="proyecto" optimistic-lock="version">
+        <id name="idArticulo" type="java.lang.Integer">
+            <column name="idArticulo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categoria" class="com.proyecto.principal.Categoria" fetch="select">
+            <column name="categoriaIdCategoria" not-null="true" />
+        </many-to-one>
+        <property name="nombreArticulo" type="string">
+            <column name="nombreArticulo" length="45" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="200" not-null="true" />
+        </property>
+        <property name="direccionImg" type="string">
+            <column name="direccionImg" length="50" not-null="true" />
+        </property>
+        <property name="precio" type="float">
+            <column name="precio" precision="12" scale="0" not-null="true" />
+        </property>
+        <set name="articulosucursals" table="articulosucursal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="articuloIdArticulo" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.principal.Articulosucursal" />
+        </set>
+        <set name="comentarioses" table="comentarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="articuloIdArticulo" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.principal.Comentarios" />
+        </set>
+    </class>
+</hibernate-mapping>
