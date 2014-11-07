@@ -25,7 +25,7 @@
                 <img src="img/Banner.png" alt="Banner" height="80px">
             </figure>
         </header>
-        <nav>
+        <nav class='<s:property value="orientacion"/>'>
             <ul>
                 <s:property value="menu" escapeHtml="false"/>
             </ul>
@@ -34,14 +34,15 @@
             <h1>Registra una nueva sucursal</h1>
             <s:form action="modificarEmpresa">
                 <s:textfield name="nombreEmpresa" label="Nombre Empresa" required="true"/>
-                <s:textfield name="fondoColor" label="Color de fondo" required="true" type="color"/>
-                <s:textfield name="fondoImagen" label="Imagen" required="true" type="image"/>
+                <s:textfield name="fondoColor" label="Color de fondo" type="color"/>
+                <%-- <s:file name="fondoImagen" label="Imagen" type="image"/> --%>
+                <s:select name="orientacion" label="Posicion del menu" list="#{'left':'Izquierda', 'right':'Derecha'}"/>
                 <s:submit value="Registrar"/>
             </s:form>
         </section>
         <footer>
             <p>Varios colaboradores</p>
-            <p>Proyecto 2014</p>
+            <p><s:property value="nombreEmpresa"/></p>
             <p>Arquitecturas de Desarrollo Web</p>
         </footer>
     </body>

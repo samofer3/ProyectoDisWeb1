@@ -46,6 +46,5 @@ public class menuAction extends ActionSupport{
     public void setMenu(String menu) {
         this.menu = menu;
     }
-  
-    
+
 }

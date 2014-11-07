@@ -65,7 +65,7 @@
         </action>
         <action name="modificarEmpresa" class="com.proyecto.principal.ControlEmpresa" method="agregaDatos">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success">/modificarEmpresa.jsp</result>
+            <result name="success" type="redirect">/empresa</result>
         </action>
         <!-- FIN SECCION EMPRESA -->
     </package>

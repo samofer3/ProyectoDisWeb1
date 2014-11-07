@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 9/10/2014 09:43:21 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 6/11/2014 09:41:38 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.proyecto.principal.Empresa" table="empresa" catalog="proyecto" optimistic-lock="version">
         <id name="nombreEmpresa" type="string">
@@ -13,6 +13,9 @@
         </property>
         <property name="fondoImagen" type="string">
             <column name="fondoImagen" length="50" />
+        </property>
+        <property name="orientacion" type="string">
+            <column name="orientacion" length="10" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

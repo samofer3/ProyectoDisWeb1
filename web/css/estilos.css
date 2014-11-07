@@ -71,6 +71,10 @@ section{
     width: 88%;
 }
 
+section h1{
+    text-align: center;
+}
+
 section#login form table{
     background: rgb(252, 242, 132);
     border: 1px solid darkorange;
@@ -140,4 +144,12 @@ section#login form table tr{
 
 .center{
     text-align: center;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
 }

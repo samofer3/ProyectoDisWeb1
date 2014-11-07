@@ -184,6 +184,8 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`empresa` (
 
   `fondoImagen` VARCHAR(50) NULL DEFAULT 'img/Fondo.png' ,
 
+   `orientacion` VARCHAR(10) NOT NULL ,
+
   PRIMARY KEY (`nombreEmpresa`) )
 
 ENGINE = InnoDB;

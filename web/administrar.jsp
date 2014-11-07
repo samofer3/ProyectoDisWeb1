@@ -24,7 +24,7 @@
                 <img src="img/Banner.png" alt="Banner" height="80px">
             </figure>
         </header>
-        <nav>
+        <nav class='<s:property value="orientacion"/>'>
             <ul>
                 <s:property value="menu" escapeHtml="false"/>
             </ul>
@@ -34,7 +34,7 @@
         </section>
         <footer>
             <p>Varios colaboradores</p>
-            <p>Proyecto 2014</p>
+            <p><s:property value="nombreEmpresa"/></p>
             <p>Arquitecturas de Desarrollo Web</p>
         </footer>
     </body>
