@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="Sistema de control de inventario" />
-        <title>Registrar Sucursal</title>
+        <title>Lista de sucursales</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/estilos.css">
         <script src="js/prefixfree.js"></script>
@@ -31,20 +31,15 @@
             </ul>
         </nav>
         <section id="login">
-            <h1>Registra una nueva sucursal</h1>
-            <s:form action="registrarSucursal">
-                <s:textfield name="nombreSucursal" label="Nombre Surcursal" required="true"/>
-                <s:textfield name="direccion" label="Dirección" required="true"/>
-                <s:textfield name="numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" maxLength="7"/>
-                <s:textfield name="email" type="email" label="E-mail" required="true"/>
-                <s:submit value="Registrar"/>
-            </s:form>
+            <h1>Sucursales</h1>
             <table border="1" id="listaSucursales" class="tablaInformativa">
                 <tr>
                     <td>Nombre</td>
                     <td>Dirección</td>
                     <td>Telefono</td>
                     <td>E-mail</td>
+                    <td>Editar</td>
+                    <td>Eliminar</td>
                 </tr>
                 <h2>Lista de sucursales registradas</h2>
                 <s:iterator value="listaSucursales">
@@ -53,6 +48,12 @@
                         <td><s:property value="direccion"/></td>
                         <td><s:property value="numeroTelefonico"/></td>
                         <td><s:property value="email"/></td>
+                        <td><s:url id="editSucursal" action="editarSucursal">
+                                <s:param name="idSucursal" value="%{idSucursal}"></s:param>
+                            </s:url><s:a href="%{editSucursal}">Editar</s:a></td>
+                        <td><s:url id="eliminarSucursal" action="eliminarSucursal">
+                                <s:param name="idSucursal" value="%{idSucursal}"></s:param>
+                            </s:url> <s:a href="%{eliminarSucursal}">Eliminar</s:a></td>
                     </tr>
                 </s:iterator>
             </table>

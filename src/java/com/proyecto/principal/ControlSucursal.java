@@ -5,9 +5,12 @@
  */
 package com.proyecto.principal;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import static java.lang.Integer.parseInt;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,18 +28,7 @@ public class ControlSucursal extends ActionSupport{
     private String direccion;
     private String numeroTelefonico;
     private String email;
-    
-    public String prueba() {
 
-        
-        /*
-        System.out.println("DATOS "+objetos.getSucursal().getEmail());
-        System.out.println("DATOS "+objetos.getSucursal().getNombreSucursal());
-        System.out.println("DATOS "+objetos.getSucursal().getNumeroTelefonico());
-        */
-        return SUCCESS;
-    }
-    
     public String agregaSucursal(){
         sucursal.setNombreSucursal(nombreSucursal);
         sucursal.setDireccion(direccion);
@@ -58,16 +50,48 @@ public class ControlSucursal extends ActionSupport{
         }
         return SUCCESS;
     }
-
-    /*
-    public Objetos getObjetos() {
-        return objetos;
+    
+    public String editarSucursal(){
+        sucursal.setNombreSucursal(nombreSucursal);
+        sucursal.setDireccion(direccion);
+        int numero = Integer.parseInt(numeroTelefonico);
+        sucursal.setNumeroTelefonico(numero);
+        sucursal.setEmail(email);
+        session=HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Integer idSucursal = null;
+        try{
+            tx = session.beginTransaction();
+            idSucursal = (Integer) session.save(getSucursal());
+            tx.commit();
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return SUCCESS;
+    }
+    
+    public String eliminarSucursal(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        session=HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            Integer id = Integer.parseInt(request.getParameter("idSucursal"));
+            Sucursal borrar = (Sucursal)session.get(Sucursal.class, id);
+            session.delete(borrar);
+            tx.commit();
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return SUCCESS;
     }
 
-    public void setObjetos(Objetos objetos) {
-        this.objetos = objetos;
-    }
-*/
     public String getNombreSucursal() {
         return nombreSucursal;
     }

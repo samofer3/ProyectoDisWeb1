@@ -75,6 +75,12 @@ section h1{
     text-align: center;
 }
 
+section h2{
+    color: crimson;
+    font-size: 1.5em;
+    text-align: center;
+}
+
 section#login form table{
     background: rgb(252, 242, 132);
     border: 1px solid darkorange;
@@ -106,6 +112,10 @@ section #enlacesSection a:hover{
     border: 1px dashed #FC1910;
     color: #FC1910;
     font-size: 3.1em;
+}
+
+section table#listaSucursales tr.tablaContenido{
+    background: white;
 }
 
 #s-articulos article{
@@ -173,4 +183,11 @@ section #enlacesSection a:hover{
 
 .right{
     float: right;
+}
+
+.tablaInformativa{
+    background: rgb(252, 242, 132);
+    border: 1px solid darkorange;
+    border-radius: 7px;
+    margin: 8% auto;
 }

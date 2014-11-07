@@ -23,6 +23,7 @@ public class control extends ActionSupport{
     private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LOS ARTICULOS
     private String nombreEmpresa;
     private String orientacion;
+    private ArrayList<Sucursal> listaSucursales;
     
     public String obtenerTitulo(){
         String resultado = "";
@@ -53,6 +54,23 @@ public class control extends ActionSupport{
         return resultado;
     }
     
+    public ArrayList<Sucursal> listadoSucursales(){
+        ArrayList<Sucursal> nombreLista = null;
+        session=HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Sucursal>)session.createQuery("from Sucursal").list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return nombreLista;
+    }
+    
+    
+    
     
     public String principal(){
         menuAction.generarMenu();
@@ -68,6 +86,7 @@ public class control extends ActionSupport{
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerOrientacion();
+        listaSucursales = this.listadoSucursales();
         return SUCCESS;
     }
 
@@ -101,6 +120,14 @@ public class control extends ActionSupport{
 
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public ArrayList<Sucursal> getListaSucursales() {
+        return listaSucursales;
+    }
+
+    public void setListaSucursales(ArrayList<Sucursal> listaSucursales) {
+        this.listaSucursales = listaSucursales;
     }
     
     

@@ -55,7 +55,19 @@
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/registrarSucursal.jsp</result>
         </action>
+        <action name="mostrarSucursales" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/mostrarSucursal.jsp</result>
+        </action>
         <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="redirect">/sucursal</result>
+        </action>
+        <action name="editarSucursal" class="com.proyecto.principal.ControlSucursal" method="editarSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="redirect">/sucursal</result>
+        </action>
+        <action name="eliminarSucursal" class="com.proyecto.principal.ControlSucursal" method="eliminarSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success" type="redirect">/sucursal</result>
         </action>
