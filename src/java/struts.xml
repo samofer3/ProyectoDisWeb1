@@ -49,12 +49,15 @@
         <!-- SECCION SUCURSAL -->
         <action name="sucursal" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/administrarSucursal.jsp</result>
+        </action>
+        <action name="anadirSucursal" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/registrarSucursal.jsp</result>
         </action>
         <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success">/administrar.jsp</result>
-            <result name="input">/administrar.jsp</result>
+            <result name="success" type="redirect">/sucursal</result>
         </action>
         <!-- FIN SECCION SUCURSAL -->
         

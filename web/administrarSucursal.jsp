@@ -31,14 +31,11 @@
             </ul>
         </nav>
         <section id="login">
-            <h1>Registra una nueva sucursal</h1>
-            <s:form action="registrarSucursal">
-                <s:textfield name="nombreSucursal" label="Nombre Surcursal" required="true"/>
-                <s:textfield name="direccion" label="Dirección" required="true"/>
-                <s:textfield name="numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" maxLength="7"/>
-                <s:textfield name="email" type="email" label="E-mail" required="true"/>
-                <s:submit value="Registrar"/>
-            </s:form>
+            <h1>Menú</h1>
+            <div id="enlacesSection">
+                <a href='mostrarSucursales'>Lista de sucursales</a>
+                <a href='anadirSucursal'>Registrar sucursal</a>
+            </div>
         </section>
         <footer>
             <p>Varios colaboradores</p>

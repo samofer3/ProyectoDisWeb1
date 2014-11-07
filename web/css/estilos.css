@@ -87,6 +87,27 @@ section#login form table tr{
     height: 30px;
 }
 
+section #enlacesSection{
+    margin: 3em 0 9em 0;
+    text-align: center;
+}
+
+section #enlacesSection a{
+    border: 1px solid #285C85;
+    border-radius: 5px;
+    color: #285C85;
+    font-size: 3em;
+    margin: 0 0.3em 2em 0;
+    padding: 0.3em;
+    text-decoration: none;
+}
+
+section #enlacesSection a:hover{
+    border: 1px dashed #FC1910;
+    color: #FC1910;
+    font-size: 3.1em;
+}
+
 #s-articulos article{
 	border: 1px dashed #285C85;
 	display: inline-block;
