@@ -24,10 +24,18 @@ public class ControlSucursal extends ActionSupport{
     Session session;
     //private Objetos objetos = new Objetos();
     private Sucursal sucursal = new Sucursal();
+    private control Control = new control();
+    private String menu;
+    private String contenido;
+    private String nombreEmpresa;
+    private String orientacion;
+    private String idSucursal;
     private String nombreSucursal;
     private String direccion;
     private String numeroTelefonico;
     private String email;
+    private String displayFormulario;
+    private String displayLista = "displayTrue";
 
     public String agregaSucursal(){
         sucursal.setNombreSucursal(nombreSucursal);
@@ -51,18 +59,37 @@ public class ControlSucursal extends ActionSupport{
         return SUCCESS;
     }
     
-    public String editarSucursal(){
-        sucursal.setNombreSucursal(nombreSucursal);
-        sucursal.setDireccion(direccion);
-        int numero = Integer.parseInt(numeroTelefonico);
-        sucursal.setNumeroTelefonico(numero);
-        sucursal.setEmail(email);
+    public String obtenerSucursal(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        Integer idSucursal = null;
+        Control.getMenuAction().generarMenuAdministrador();
+        menu = Control.getMenuAction().getMenu();
+        nombreEmpresa = Control.obtenerTitulo();
+        orientacion = Control.obtenerOrientacion();
         try{
             tx = session.beginTransaction();
-            idSucursal = (Integer) session.save(getSucursal());
+            Integer id = Integer.parseInt(request.getParameter("idSucursal"));
+            sucursal = (Sucursal)session.get(Sucursal.class, id);
+            displayFormulario = "displayTrue";
+            displayLista = "displayNone";
+            tx.commit();
+            
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return SUCCESS;
+    }
+    
+    public String editarSucursal(){
+        session=HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            session.update(sucursal);
             tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -130,6 +157,62 @@ public class ControlSucursal extends ActionSupport{
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public String getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(String idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+
+    public String getDisplayFormulario() {
+        return displayFormulario;
+    }
+
+    public void setDisplayFormulario(String displayFormulario) {
+        this.displayFormulario = displayFormulario;
+    }
+
+    public String getDisplayLista() {
+        return displayLista;
+    }
+
+    public void setDisplayLista(String displayLista) {
+        this.displayLista = displayLista;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(String orientacion) {
+        this.orientacion = orientacion;
     }
     
 }

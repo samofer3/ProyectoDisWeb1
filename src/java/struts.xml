@@ -63,6 +63,10 @@
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success" type="redirect">/sucursal</result>
         </action>
+        <action name="obtenerSucursal" class="com.proyecto.principal.ControlSucursal" method="obtenerSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/mostrarSucursal.jsp</result>
+        </action>
         <action name="editarSucursal" class="com.proyecto.principal.ControlSucursal" method="editarSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success" type="redirect">/sucursal</result>

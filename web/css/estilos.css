@@ -191,3 +191,11 @@ section table#listaSucursales tr.tablaContenido{
     border-radius: 7px;
     margin: 8% auto;
 }
+
+.displayNone{
+    display: none;
+}
+
+.displayTrue{
+    display: run-in;
+}

@@ -23,6 +23,7 @@ public class control extends ActionSupport{
     private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LOS ARTICULOS
     private String nombreEmpresa;
     private String orientacion;
+    private String displayFormulario = "displayNone";
     private ArrayList<Sucursal> listaSucursales;
     
     public String obtenerTitulo(){
@@ -89,6 +90,15 @@ public class control extends ActionSupport{
         listaSucursales = this.listadoSucursales();
         return SUCCESS;
     }
+    
+    public String administrarSucursal(){
+        menuAction.generarMenuAdministrador();
+        menu = menuAction.getMenu();
+        nombreEmpresa = obtenerTitulo();
+        orientacion = obtenerOrientacion();
+        listaSucursales = this.listadoSucursales();
+        return SUCCESS;
+    }
 
     public String getMenu() {
         return menu;
@@ -128,6 +138,30 @@ public class control extends ActionSupport{
 
     public void setListaSucursales(ArrayList<Sucursal> listaSucursales) {
         this.listaSucursales = listaSucursales;
+    }
+
+    public menuAction getMenuAction() {
+        return menuAction;
+    }
+
+    public void setMenuAction(menuAction menuAction) {
+        this.menuAction = menuAction;
+    }
+
+    public contenidoAction getContenidoAction() {
+        return contenidoAction;
+    }
+
+    public void setContenidoAction(contenidoAction contenidoAction) {
+        this.contenidoAction = contenidoAction;
+    }
+
+    public String getDisplayFormulario() {
+        return displayFormulario;
+    }
+
+    public void setDisplayFormulario(String displayFormulario) {
+        this.displayFormulario = displayFormulario;
     }
     
     

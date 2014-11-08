@@ -32,7 +32,18 @@
         </nav>
         <section id="login">
             <h1>Sucursales</h1>
-            <table border="1" id="listaSucursales" class="tablaInformativa">
+            <div class='<s:property value="displayFormulario"/>'>
+                <s:form action="editarSucursal">
+                    <s:textfield name="sucursal.idSucursal" type="hidden"/>
+                    <s:textfield name="sucursal.nombreSucursal" label="Nombre Surcursal" required="true"/>
+                    <s:textfield name="sucursal.direccion" label="Dirección" required="true"/>
+                    <s:textfield name="sucursal.numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" maxLength="7"/>
+                    <s:textfield name="sucursal.email" type="email" label="E-mail" required="true"/>
+                    <s:submit value="Actualizar"/>
+                </s:form>
+            </div>
+                <h2 class='<s:property value="displayLista"/>'>Lista de sucursales registradas</h2>
+            <table border="1" id="listaSucursales" class='tablaInformativa <s:property value="displayLista"/>'>
                 <tr>
                     <td>Nombre</td>
                     <td>Dirección</td>
@@ -41,14 +52,13 @@
                     <td>Editar</td>
                     <td>Eliminar</td>
                 </tr>
-                <h2>Lista de sucursales registradas</h2>
                 <s:iterator value="listaSucursales">
                     <tr class="tablaContenido">
                         <td><s:property value="nombreSucursal"/></td>
                         <td><s:property value="direccion"/></td>
                         <td><s:property value="numeroTelefonico"/></td>
                         <td><s:property value="email"/></td>
-                        <td><s:url id="editSucursal" action="editarSucursal">
+                        <td><s:url id="editSucursal" action="obtenerSucursal">
                                 <s:param name="idSucursal" value="%{idSucursal}"></s:param>
                             </s:url><s:a href="%{editSucursal}">Editar</s:a></td>
                         <td><s:url id="eliminarSucursal" action="eliminarSucursal">
