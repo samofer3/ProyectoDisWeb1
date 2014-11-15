@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="Sistema de control de inventario" />
-        <title>Menú Sucursal</title>
+        <title>Menú Categoría</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/estilos.css">
         <script src="js/prefixfree.js"></script>
@@ -34,8 +34,8 @@
             <h1>Menú</h1>
             <h2><s:property value="mensaje"/></h2>
             <div id="enlacesSection">
-                <a href='mostrarSucursales'>Lista de sucursales</a>
-                <a href='anadirSucursal'>Registrar sucursal</a>
+                <a href='mostrarCategorias'>Lista de categorías</a>
+                <a href='anadirCategoria'>Registrar categoría</a>
             </div>
         </section>
         <footer>

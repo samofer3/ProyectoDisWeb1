@@ -39,7 +39,7 @@
                 <s:textfield name="email" type="email" label="E-mail" required="true"/>
                 <s:submit value="Registrar"/>
             </s:form>
-            <table border="1" id="listaSucursales" class="tablaInformativa">
+            <table border="1" id="listaTabla" class="tablaInformativa">
                 <tr>
                     <td>Nombre</td>
                     <td>Dirección</td>

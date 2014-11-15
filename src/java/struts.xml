@@ -27,6 +27,12 @@
         <action name="index" class="com.proyecto.principal.control" method="principal">
             <result>/index.jsp</result>
         </action>
+        
+        <action name="articulos" class="com.proyecto.principal.ListaArticulos" method="generarArticulos">
+            <result name="success" type="chain">
+                <param name="actionName">index</param>
+            </result>
+        </action>
         <!-- FIN SECCION INDEX -->
         
         <!-- SECCION LOGIN -->
@@ -51,33 +57,83 @@
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/administrarSucursal.jsp</result>
         </action>
-        <action name="anadirSucursal" class="com.proyecto.principal.control" method="administrar">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result>/registrarSucursal.jsp</result>
-        </action>
-        <action name="mostrarSucursales" class="com.proyecto.principal.control" method="administrar">
+        <action name="mostrarSucursales" class="com.proyecto.principal.control" method="administrarSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/mostrarSucursal.jsp</result>
         </action>
-        <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="redirect">/sucursal</result>
-        </action>
         <action name="obtenerSucursal" class="com.proyecto.principal.ControlSucursal" method="obtenerSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success">/mostrarSucursal.jsp</result>
+            <result name="success" type="chain">
+                <param name="actionName">mostrarSucursales</param>
+            </result>
         </action>
         <action name="editarSucursal" class="com.proyecto.principal.ControlSucursal" method="editarSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="redirect">/sucursal</result>
+            <result name="success" type="chain">
+                <param name="actionName">sucursal</param>
+            </result>
         </action>
         <action name="eliminarSucursal" class="com.proyecto.principal.ControlSucursal" method="eliminarSucursal">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="redirect">/sucursal</result>
+            <result name="success" type="chain">
+                <param name="actionName">sucursal</param>
+            </result>
+        </action>
+        <action name="anadirSucursal" class="com.proyecto.principal.control" method="administrarSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/registrarSucursal.jsp</result>
+        </action>
+        <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">sucursal</param>
+            </result>
         </action>
         <!-- FIN SECCION SUCURSAL -->
+
+        <!-- SECCION ARTICULOS -->
+        <!-- FIN SECCION ARTICULOS -->
         
-        <!-- SECCION EMPRESA -->
+        <!-- SECCION CATEGORIAS -->
+        <action name="categoria" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/administrarCategoria.jsp</result>
+        </action>
+        <action name="mostrarCategorias" class="com.proyecto.principal.control" method="administrarCategoria">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/mostrarCategoria.jsp</result>
+        </action>
+        <action name="obtenerCategoria" class="com.proyecto.principal.ControlCategoria" method="obtenerCategoria">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">mostrarCategorias</param>
+            </result>
+        </action>
+        <action name="editarCategoria" class="com.proyecto.principal.ControlCategoria" method="editarCategoria">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">categoria</param>
+            </result>
+        </action>
+        <action name="eliminarCategoria" class="com.proyecto.principal.ControlCategoria" method="eliminarCategoria">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">categoria</param>
+            </result>
+        </action>
+        <action name="anadirCategoria" class="com.proyecto.principal.control" method="administrarCategoria">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/registrarCategoria.jsp</result>
+        </action>
+        <action name="registrarCategoria" class="com.proyecto.principal.ControlCategoria" method="agregaCategoria">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">categoria</param>
+            </result>
+        </action>
+        <!-- FIN SECCION CATEGORIAS -->
+        
+        <!-- SECCION PAGINA -->
         <action name="empresa" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/modificarEmpresa.jsp</result>
@@ -86,6 +142,9 @@
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success" type="redirect">/empresa</result>
         </action>
-        <!-- FIN SECCION EMPRESA -->
+        <!-- FIN SECCION PAGINA -->
+        
+        <!-- SECCION USUARIOS -->
+        <!-- FIN SECCION USUARIOS -->
     </package>
 </struts>

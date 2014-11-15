@@ -15,53 +15,53 @@ import org.hibernate.Transaction;
  *
  * @author ferna_000
  */
-public class control extends ActionSupport{
+public class control extends ActionSupport {
+
     Session session;
     private String menu;
-    private String contenido;
     private menuAction menuAction = new menuAction(); //GENERA EL MENU DE LA IZQUIERDA
-    private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LOS ARTICULOS
     private String nombreEmpresa;
     private String orientacion;
     private String displayFormulario = "displayNone";
     private ArrayList<Sucursal> listaSucursales;
-    
-    public String obtenerTitulo(){
+    private ArrayList<Categoria> listaCategorias;
+
+    public String obtenerTitulo() {
         String resultado = "";
-        session=HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            resultado = session.createQuery("select empresa.nombreEmpresa from Empresa empresa").list().get(0).toString();
-        }catch (HibernateException e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-        return resultado;
-    }
-    
-    public String obtenerOrientacion(){
-        String resultado = "";
-        session=HibernateUtil.getSessionFactory().openSession();
-        try{
-            session.beginTransaction();
-            resultado = session.createQuery("select empresa.orientacion from Empresa empresa").list().get(0).toString();
-        }catch (HibernateException e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-        return resultado;
-    }
-    
-    public ArrayList<Sucursal> listadoSucursales(){
-        ArrayList<Sucursal> nombreLista = null;
-        session=HibernateUtil.getSessionFactory().openSession();
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            nombreLista = (ArrayList<Sucursal>)session.createQuery("from Sucursal").list();
+            resultado = session.createQuery("select empresa.nombreEmpresa from Empresa empresa").list().get(0).toString();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return resultado;
+    }
+
+    public String obtenerOrientacion() {
+        String resultado = "";
+        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            resultado = session.createQuery("select empresa.orientacion from Empresa empresa").list().get(0).toString();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return resultado;
+    }
+
+    public ArrayList<Sucursal> listadoSucursales() {
+        ArrayList<Sucursal> nombreLista = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Sucursal>) session.createQuery("from Sucursal").list();
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -69,20 +69,39 @@ public class control extends ActionSupport{
         }
         return nombreLista;
     }
-    
-    
-    
-    
-    public String principal(){
+
+    public ArrayList<Categoria> listadoCategorias() {
+        ArrayList<Categoria> nombreLista = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Categoria>) session.createQuery("from Categoria").list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return nombreLista;
+    }
+
+    public String principal() {
         menuAction.generarMenu();
         menu = menuAction.getMenu();
-        contenidoAction.generarContenido();
-        contenido = contenidoAction.getContenido();
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerOrientacion();
         return SUCCESS;
     }
-    public String administrar(){
+
+    public String administrar() {
+        menuAction.generarMenuAdministrador();
+        menu = menuAction.getMenu();
+        nombreEmpresa = obtenerTitulo();
+        orientacion = obtenerOrientacion();
+        return SUCCESS;
+    }
+
+    public String administrarSucursal() {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
@@ -90,13 +109,13 @@ public class control extends ActionSupport{
         listaSucursales = this.listadoSucursales();
         return SUCCESS;
     }
-    
-    public String administrarSucursal(){
+
+    public String administrarCategoria() {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerOrientacion();
-        listaSucursales = this.listadoSucursales();
+        listaCategorias = this.listadoCategorias();
         return SUCCESS;
     }
 
@@ -106,14 +125,6 @@ public class control extends ActionSupport{
 
     public void setMenu(String menu) {
         this.menu = menu;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
     }
 
     public String getOrientacion() {
@@ -148,14 +159,6 @@ public class control extends ActionSupport{
         this.menuAction = menuAction;
     }
 
-    public contenidoAction getContenidoAction() {
-        return contenidoAction;
-    }
-
-    public void setContenidoAction(contenidoAction contenidoAction) {
-        this.contenidoAction = contenidoAction;
-    }
-
     public String getDisplayFormulario() {
         return displayFormulario;
     }
@@ -163,6 +166,13 @@ public class control extends ActionSupport{
     public void setDisplayFormulario(String displayFormulario) {
         this.displayFormulario = displayFormulario;
     }
-    
-    
+
+    public ArrayList<Categoria> getListaCategorias() {
+        return listaCategorias;
+    }
+
+    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+        this.listaCategorias = listaCategorias;
+    }
+
 }

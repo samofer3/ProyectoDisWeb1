@@ -20,33 +20,23 @@ import org.hibernate.Transaction;
  *
  * @author ferna_000
  */
-public class ControlSucursal extends ActionSupport{  
+public class ControlCategoria extends ActionSupport implements ModelDriven<Object>{  
     Session session;
-    private Sucursal sucursal = new Sucursal();
-    private String idSucursal;
-    private String nombreSucursal;
-    private String direccion;
-    private String numeroTelefonico;
-    private String email;
+    private Categoria categoria = new Categoria();
     private String displayFormulario;
     private String displayLista = "displayTrue";
     private String mensaje = "";
 
-    public String agregaSucursal(){
+    public String agregaCategoria(){
         mensaje = "";
-        sucursal.setNombreSucursal(nombreSucursal);
-        sucursal.setDireccion(direccion);
-        int numero = Integer.parseInt(numeroTelefonico);
-        sucursal.setNumeroTelefonico(numero);
-        sucursal.setEmail(email);
         session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        Integer idSucursal = null;
+        Integer idCategoria = null;
         try{
             tx = session.beginTransaction();
-            idSucursal = (Integer) session.save(getSucursal());
+            idCategoria = (Integer) session.save(categoria);
             tx.commit();
-            mensaje = "Sucursal añadida con éxito";
+            mensaje = "Categoría añadida con éxito";
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
@@ -56,15 +46,15 @@ public class ControlSucursal extends ActionSupport{
         return SUCCESS;
     }
     
-    public String obtenerSucursal(){
+    public String obtenerCategoria(){
         mensaje = "";
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            Integer id = Integer.parseInt(request.getParameter("idSucursal"));
-            sucursal = (Sucursal)session.get(Sucursal.class, id);
+            Integer id = Integer.parseInt(request.getParameter("idCategoria"));
+            categoria = (Categoria)session.get(Categoria.class, id);
             displayFormulario = "displayTrue";
             displayLista = "displayNone";
             tx.commit();
@@ -78,15 +68,15 @@ public class ControlSucursal extends ActionSupport{
         return SUCCESS;
     }
     
-    public String editarSucursal(){
+    public String editarCategoria(){
         mensaje = "";
         session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            session.update(sucursal);
+            session.update(categoria);
             tx.commit();
-            mensaje = "Sucursal modificada con éxito";
+            mensaje = "Categoría modificada con éxito";
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
@@ -96,18 +86,18 @@ public class ControlSucursal extends ActionSupport{
         return SUCCESS;
     }
     
-    public String eliminarSucursal(){
+    public String eliminarCategoria(){
         mensaje = "";
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            Integer id = Integer.parseInt(request.getParameter("idSucursal"));
-            Sucursal borrar = (Sucursal)session.get(Sucursal.class, id);
+            Integer id = Integer.parseInt(request.getParameter("idCategoria"));
+            Categoria borrar = (Categoria)session.get(Categoria.class, id);
             session.delete(borrar);
             tx.commit();
-            mensaje = "Sucursal eliminada con éxito";
+            mensaje = "Categoria eliminada con éxito";
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
@@ -115,54 +105,6 @@ public class ControlSucursal extends ActionSupport{
             session.close();
         }
         return SUCCESS;
-    }
-
-    public String getNombreSucursal() {
-        return nombreSucursal;
-    }
-
-    public void setNombreSucursal(String nombreSucursal) {
-        this.nombreSucursal = nombreSucursal;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getNumeroTelefonico() {
-        return numeroTelefonico;
-    }
-
-    public void setNumeroTelefonico(String numeroTelefonico) {
-        this.numeroTelefonico = numeroTelefonico;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Sucursal getSucursal() {
-        return sucursal;
-    }
-
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
-    }
-
-    public String getIdSucursal() {
-        return idSucursal;
-    }
-
-    public void setIdSucursal(String idSucursal) {
-        this.idSucursal = idSucursal;
     }
 
     public String getDisplayFormulario() {
@@ -188,6 +130,17 @@ public class ControlSucursal extends ActionSupport{
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
- 
     
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public Object getModel() {
+        return categoria;
+    } 
 }

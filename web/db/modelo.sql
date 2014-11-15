@@ -48,6 +48,8 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo` (
 
   `precio` FLOAT NOT NULL ,
 
+  `fecha` VARCHAR(6) NOT NULL ,
+
   `categoriaIdCategoria` INT NOT NULL ,
 
   PRIMARY KEY (`idArticulo`) ,

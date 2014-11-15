@@ -6,6 +6,7 @@
 package com.proyecto.principal;
 
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,26 +15,28 @@ import com.opensymphony.xwork2.ActionSupport;
 public class contenidoAction extends ActionSupport{
     private String contenido = "";
 
-    public void generarContenido(){
-        contenido = crearContenido();
+    public void generarContenido(ArrayList<Articulo> articulos){
+        contenido = crearContenido(articulos);
     }
     
-    public String crearContenido(){
+    public String crearContenido(ArrayList<Articulo> articulos){
         StringBuffer contenido = new StringBuffer();
-        for (int i = 1; i < 5; i++) {
+        
+        for (Articulo articulo : articulos) {
             contenido.append((String)"<article>\n");
-            contenido.append((String)"\t<h2>Articulo " + i + "</h2>\n");
+            contenido.append((String)"\t<h2>" + articulo.getNombreArticulo() + "</h2>\n");
             contenido.append((String)"\t<figure>\n");
-            contenido.append((String)"\t\t<img src='img/Logo.png' alt='Articulo " + i + "' class='escale'>\n");
+            contenido.append((String)"\t\t<img src='img/Logo.png' alt='" + articulo.getNombreArticulo() + "' class='escale'>\n");
             contenido.append((String)"\t</figure>\n");
             contenido.append((String)"\t<div class='a-texto'>\n");
-            contenido.append((String)"\t\t<p><strong>Descripción:</strong> 128 PAQUETES CON 3 CUBOS DE AZUCAR REFINADA CADA UNO, PESO 1 KG</p>\n");
-            contenido.append((String)"\t\t<p><strong>Precio:</strong> $123.45</p>\n");
+            contenido.append((String)"\t\t<p><strong>Descripción:</strong>" + articulo.getDescripcion() + "</p>\n");
+            contenido.append((String)"\t\t<p><strong>Precio:</strong> $" + articulo.getPrecio() + "</p>\n");
             contenido.append((String)"\t\t<p><strong>Disponibilidad:</strong> 120</p>\n");
             contenido.append((String)"\t\t<p><strong>Sucursal:</strong> <a href='#'>Ver sucursales</a></p>\n");
             contenido.append((String)"\t</div>\n");
             contenido.append((String)"</article>\n");
         }
+        
         return new String (contenido);
     }
 

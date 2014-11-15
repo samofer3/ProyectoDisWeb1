@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="Sistema de control de inventario" />
-        <title>Menú Sucursal</title>
+        <title>Registrar Categoría</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/estilos.css">
         <script src="js/prefixfree.js"></script>
@@ -31,12 +31,22 @@
             </ul>
         </nav>
         <section id="login">
-            <h1>Menú</h1>
-            <h2><s:property value="mensaje"/></h2>
-            <div id="enlacesSection">
-                <a href='mostrarSucursales'>Lista de sucursales</a>
-                <a href='anadirSucursal'>Registrar sucursal</a>
-            </div>
+            <h1>Registra una nueva categoría de productos</h1>
+            <s:form action="registrarCategoria">
+                <s:textfield name="nombreCategoria" label="Nombre Categoría" required="true"/>
+                <s:submit value="Registrar"/>
+            </s:form>
+            <table border="1" id="listaTabla" class="tablaInformativa">
+                <tr>
+                    <td>Categoría</td>
+                </tr>
+                <h2>Lista de categorías registradas</h2>
+                <s:iterator value="listaCategorias">
+                    <tr class="tablaContenido">
+                        <td><s:property value="nombreCategoria"/></td>
+                    </tr>
+                </s:iterator>
+            </table>
         </section>
         <footer>
             <p>Varios colaboradores</p>
