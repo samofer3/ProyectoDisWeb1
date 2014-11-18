@@ -1,5 +1,5 @@
 package com.proyecto.principal;
-// Generated 14/11/2014 11:26:46 PM by Hibernate Tools 4.3.1
+// Generated 17/11/2014 10:10:26 PM by Hibernate Tools 4.3.1
 
 
 

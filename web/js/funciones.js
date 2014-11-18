@@ -5,3 +5,17 @@
  */
 
 
+window.onload = function ()
+{
+    var permiso = document.getElementById("permiso");
+    permiso.onchange = enviar;
+
+    function enviar() {
+        var sucursal = document.getElementById("sucursal");
+        if (permiso.value == 3) {
+            sucursal.disabled = "true";
+        }else{
+            sucursal.removeAttribute("disabled");
+        }
+    }
+};

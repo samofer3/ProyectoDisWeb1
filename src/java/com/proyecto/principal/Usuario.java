@@ -1,5 +1,5 @@
 package com.proyecto.principal;
-// Generated 14/11/2014 11:26:46 PM by Hibernate Tools 4.3.1
+// Generated 17/11/2014 10:10:26 PM by Hibernate Tools 4.3.1
 
 
 
@@ -18,6 +18,12 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
+	
+    public Usuario(String nombreUsuario, String password, char permiso) {
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.permiso = permiso;
+    }
     public Usuario(Sucursal sucursal, String nombreUsuario, String password, char permiso) {
        this.sucursal = sucursal;
        this.nombreUsuario = nombreUsuario;

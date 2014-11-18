@@ -31,8 +31,8 @@ public class menuAction extends ActionSupport {
         menu.append((String) "\t\t\t\t<li><a href='sucursal'>Administrar Sucursal</a></li>\n");
         menu.append((String) "\t\t\t\t<li><a href='#'>Administrar Articulos</a></li>\n");
         menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
+        menu.append((String) "\t\t\t\t<li><a href='usuario'>Administrar Usuarios</a></li>\n");
         menu.append((String) "\t\t\t\t<li><a href='empresa'>Administrar Pagina</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='#'>Administrar Usuarios</a></li>\n");
         menu.append((String) "\t\t\t\t</br>\n");
         menu.append((String) "\t\t\t\t</br>\n");
         menu.append((String) "\t\t\t\t<li class='center'><a href='logout' >Salir</a></li>\n");
@@ -47,7 +47,7 @@ public class menuAction extends ActionSupport {
     public String crearMenu() {
         StringBuffer menu = new StringBuffer();
 
-        menu.append((String) "<li><a href='articulos.action?idCategoria=-1'>Recientes</a></li>\n");
+        menu.append((String) "<li><a href='articulos.action?idCategoria=0'>Recientes</a></li>\n");
         listaCategorias = listadoCategorias();
         for (Categoria listaCategoria : listaCategorias) {
             menu.append((String) "\t\t\t\t<li><a href='articulos.action?idCategoria="

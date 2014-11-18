@@ -7,6 +7,7 @@ package com.proyecto.principal;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -25,6 +26,8 @@ public class control extends ActionSupport {
     private String displayFormulario = "displayNone";
     private ArrayList<Sucursal> listaSucursales;
     private ArrayList<Categoria> listaCategorias;
+    private ArrayList<Usuario> listaUsuarios;
+    private ArrayList<Integer> listaApoyo;
 
     public String obtenerTitulo() {
         String resultado = "";
@@ -84,6 +87,22 @@ public class control extends ActionSupport {
         }
         return nombreLista;
     }
+    
+    public ArrayList<Usuario> listadoUsuarios() {
+        ArrayList<Usuario> nombreLista = null;
+        
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Usuario>) session.createQuery("from Usuario").list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return nombreLista;
+    }
 
     public String principal() {
         menuAction.generarMenu();
@@ -116,6 +135,16 @@ public class control extends ActionSupport {
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerOrientacion();
         listaCategorias = this.listadoCategorias();
+        return SUCCESS;
+    }
+
+    public String administrarUsuario() {
+        menuAction.generarMenuAdministrador();
+        menu = menuAction.getMenu();
+        nombreEmpresa = obtenerTitulo();
+        orientacion = obtenerOrientacion();
+        listaSucursales = this.listadoSucursales();
+        listaUsuarios = this.listadoUsuarios();
         return SUCCESS;
     }
 
@@ -173,6 +202,14 @@ public class control extends ActionSupport {
 
     public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
         this.listaCategorias = listaCategorias;
+    }
+
+    public ArrayList<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 
 }

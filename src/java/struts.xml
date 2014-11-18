@@ -133,6 +133,33 @@
         </action>
         <!-- FIN SECCION CATEGORIAS -->
         
+        <!-- SECCION USUARIOS -->
+        <action name="usuario" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/administrarUsuario.jsp</result>
+        </action>
+        <action name="mostrarUsuarios" class="com.proyecto.principal.control" method="administrarUsuario">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/mostrarUsuario.jsp</result>
+        </action>
+        <action name="eliminarUsuario" class="com.proyecto.principal.ControlUsuario" method="eliminarUsuario">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">usuario</param>
+            </result>
+        </action>
+        <action name="anadirUsuario" class="com.proyecto.principal.control" method="administrarUsuario">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/registrarUsuario.jsp</result>
+        </action>
+        <action name="registrarUsuario" class="com.proyecto.principal.ControlUsuario" method="agregaUsuario">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">usuario</param>
+            </result>
+        </action>
+        <!-- FIN SECCION USUARIOS -->
+        
         <!-- SECCION PAGINA -->
         <action name="empresa" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
@@ -143,8 +170,5 @@
             <result name="success" type="redirect">/empresa</result>
         </action>
         <!-- FIN SECCION PAGINA -->
-        
-        <!-- SECCION USUARIOS -->
-        <!-- FIN SECCION USUARIOS -->
     </package>
 </struts>

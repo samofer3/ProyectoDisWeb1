@@ -1,5 +1,5 @@
 package com.proyecto.principal;
-// Generated 14/11/2014 11:26:46 PM by Hibernate Tools 4.3.1
+// Generated 17/11/2014 10:10:26 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,7 +17,6 @@ public class Articulo  implements java.io.Serializable {
      private String descripcion;
      private String direccionImg;
      private float precio;
-     private String fecha;
      private Set<Articulosucursal> articulosucursals = new HashSet<Articulosucursal>(0);
      private Set<Comentarios> comentarioses = new HashSet<Comentarios>(0);
 
@@ -25,21 +24,19 @@ public class Articulo  implements java.io.Serializable {
     }
 
 	
-    public Articulo(Categoria categoria, String nombreArticulo, String descripcion, String direccionImg, float precio, String fecha) {
+    public Articulo(Categoria categoria, String nombreArticulo, String descripcion, String direccionImg, float precio) {
         this.categoria = categoria;
         this.nombreArticulo = nombreArticulo;
         this.descripcion = descripcion;
         this.direccionImg = direccionImg;
         this.precio = precio;
-        this.fecha = fecha;
     }
-    public Articulo(Categoria categoria, String nombreArticulo, String descripcion, String direccionImg, float precio, String fecha, Set<Articulosucursal> articulosucursals, Set<Comentarios> comentarioses) {
+    public Articulo(Categoria categoria, String nombreArticulo, String descripcion, String direccionImg, float precio, Set<Articulosucursal> articulosucursals, Set<Comentarios> comentarioses) {
        this.categoria = categoria;
        this.nombreArticulo = nombreArticulo;
        this.descripcion = descripcion;
        this.direccionImg = direccionImg;
        this.precio = precio;
-       this.fecha = fecha;
        this.articulosucursals = articulosucursals;
        this.comentarioses = comentarioses;
     }
@@ -85,13 +82,6 @@ public class Articulo  implements java.io.Serializable {
     
     public void setPrecio(float precio) {
         this.precio = precio;
-    }
-    public String getFecha() {
-        return this.fecha;
-    }
-    
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
     public Set<Articulosucursal> getArticulosucursals() {
         return this.articulosucursals;

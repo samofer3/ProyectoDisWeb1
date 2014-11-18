@@ -31,31 +31,24 @@ public class ListaArticulos extends ActionSupport {
     public String generarArticulos() {
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         int id = Integer.parseInt(request.getParameter("idCategoria"));
-        System.out.println("NUMERO ID" + id);
         int numeroArticulos = numeroArticulos();
-        System.out.println("DESPUES DE ASIGNACION DE NUMEROARTICULOS");
         if (numeroArticulos != 0) {
-            System.out.println("ENTRA A NUMERO ARTICULOS != DE 0");
             listadoArticulos(id);
-            //contenidoAction.generarContenido(listaArticulos);
-            //contenido = contenidoAction.getContenido();
+            contenidoAction.generarContenido(listaArticulos);
+            contenido = contenidoAction.getContenido();
         }
 
         return SUCCESS;
     }
 
     public void listadoArticulos(int id) {
-        //ArrayList<Articulo> nombreLista = null;
         session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            if (id < 0) {
-                System.out.println("LISTADOARTICULOS IFTRUE");
-                //nombreLista = (ArrayList<Articulo>) session.createQuery("from Articulo where fecha ='" ).list();
+            if (id == 0) {
+                listaArticulos = (ArrayList<Articulo>) session.createQuery("from Articulo").list();
             } else {
-                System.out.println("LISTADOARTICULOS IFELSE");
                 listaArticulos = (ArrayList<Articulo>) session.createQuery("select a from Articulo a, Categoria c where categoriaIdCategoria=idCategoria and categoriaidCategoria = " + id).list();
-                System.out.println("CONSULTA EJECUTADA");
             }
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -69,17 +62,14 @@ public class ListaArticulos extends ActionSupport {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
-            System.out.println("ENTRA AL TRY");
             tx = session.beginTransaction();
             valor = Integer.parseInt(session.createQuery("select count(idArticulo) from Articulo articulo").list().get(0).toString());
-            System.out.println("OBTIENE EL NOMBRE DE LAS LISTAS");
             tx.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-        System.out.println("VALOR SIZE" + valor);
         return valor;
     }
 

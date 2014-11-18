@@ -43,7 +43,7 @@
                 </s:form>
             </div>
                 <h2 class='<s:property value="displayLista"/>'>Lista de sucursales registradas</h2>
-            <table border="1" id="listaSucursales" class='tablaInformativa <s:property value="displayLista"/>'>
+            <table border="1" id="listaTabla" class='tablaInformativa <s:property value="displayLista"/>'>
                 <tr>
                     <td>Nombre</td>
                     <td>Dirección</td>

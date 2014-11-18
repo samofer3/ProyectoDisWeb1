@@ -48,8 +48,6 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo` (
 
   `precio` FLOAT NOT NULL ,
 
-  `fecha` VARCHAR(6) NOT NULL ,
-
   `categoriaIdCategoria` INT NOT NULL ,
 
   PRIMARY KEY (`idArticulo`) ,
@@ -148,9 +146,9 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`usuario` (
 
   `password` VARCHAR(20) NOT NULL ,
 
-  `permiso` CHAR NOT NULL ,
+  `permiso` CHAR NOT NULl ,
 
-  `sucursalIdSucursal` INT NOT NULL ,
+  `sucursalIdSucursal` INT ,
 
   PRIMARY KEY (`idUsuario`) ,
 

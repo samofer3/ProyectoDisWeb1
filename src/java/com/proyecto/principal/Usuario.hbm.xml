@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/11/2014 11:26:48 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 17/11/2014 10:10:30 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.proyecto.principal.Usuario" table="usuario" catalog="proyecto" optimistic-lock="version">
         <id name="idUsuario" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="sucursal" class="com.proyecto.principal.Sucursal" fetch="select">
-            <column name="sucursalIdSucursal" not-null="true" />
+            <column name="sucursalIdSucursal" />
         </many-to-one>
         <property name="nombreUsuario" type="string">
             <column name="nombreUsuario" length="40" not-null="true" />
