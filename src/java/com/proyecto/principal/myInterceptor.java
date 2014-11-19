@@ -26,7 +26,7 @@ public class myInterceptor implements Interceptor{
     @Override
     public String intercept(ActionInvocation ai) throws Exception {
         Map<String,Object> sessionAttributes = ai.getInvocationContext().getSession();
-        User user = (User) sessionAttributes.get("USER");
+        User user = (User) sessionAttributes.get("user");
         if(user == null){
             return LOGIN;
         }

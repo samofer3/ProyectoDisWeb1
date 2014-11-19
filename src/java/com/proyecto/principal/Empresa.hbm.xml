@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 17/11/2014 10:10:30 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/11/2014 09:37:47 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.proyecto.principal.Empresa" table="empresa" catalog="proyecto" optimistic-lock="version">
         <id name="nombreEmpresa" type="string">
             <column name="nombreEmpresa" length="80" />
             <generator class="assigned" />
         </id>
-        <property name="fondoColor" type="string">
-            <column name="fondoColor" length="10" />
-        </property>
         <property name="fondoImagen" type="string">
             <column name="fondoImagen" length="50" />
+        </property>
+        <property name="banner" type="string">
+            <column name="banner" length="50" />
+        </property>
+        <property name="logo" type="string">
+            <column name="logo" length="50" />
         </property>
         <property name="orientacion" type="string">
             <column name="orientacion" length="10" not-null="true" />

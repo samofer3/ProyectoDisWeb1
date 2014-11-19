@@ -15,13 +15,13 @@
         <link rel="stylesheet" href="css/estilos.css">
         <script src="js/prefixfree.js"></script>
     </head>
-    <body>
+    <body background='<s:property value="fondoBody"/>'>
         <header>
             <figure id="logo">
-                <img src="img/Logo.png" alt="Logo" height="80px">
+                <img src='<s:property value="logoDB" />' alt="Logo" height="80px">
             </figure>
             <figure id="banner">
-                <img src="img/Banner.png" alt="Banner" height="80px">
+                <img src='<s:property value="bannerDB" />' alt="Banner" height="80px">
             </figure>
         </header>
         <nav class='<s:property value="orientacion"/>'>
@@ -30,7 +30,7 @@
             </ul>
         </nav>
         <section>
-            
+
         </section>
         <footer>
             <p>Varios colaboradores</p>

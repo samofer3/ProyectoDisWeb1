@@ -23,11 +23,14 @@ public class control extends ActionSupport {
     private menuAction menuAction = new menuAction(); //GENERA EL MENU DE LA IZQUIERDA
     private String nombreEmpresa;
     private String orientacion;
+    private String fondoBody;
+    private String logoDB;
+    private String bannerDB;
+    private String idCategoria; //Evitar errores de uso GET
     private String displayFormulario = "displayNone";
     private ArrayList<Sucursal> listaSucursales;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Usuario> listaUsuarios;
-    private ArrayList<Integer> listaApoyo;
 
     public String obtenerTitulo() {
         String resultado = "";
@@ -44,12 +47,12 @@ public class control extends ActionSupport {
         return resultado;
     }
 
-    public String obtenerOrientacion() {
-        String resultado = "";
+    public Empresa obtenerValoresEmpresa() {
+        Empresa resultado = null;
         session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            resultado = session.createQuery("select empresa.orientacion from Empresa empresa").list().get(0).toString();
+            resultado = (Empresa)session.createQuery("from Empresa empresa").list().get(0);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -108,7 +111,10 @@ public class control extends ActionSupport {
         menuAction.generarMenu();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
-        orientacion = obtenerOrientacion();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
         return SUCCESS;
     }
 
@@ -116,7 +122,10 @@ public class control extends ActionSupport {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
-        orientacion = obtenerOrientacion();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
         return SUCCESS;
     }
 
@@ -124,7 +133,10 @@ public class control extends ActionSupport {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
-        orientacion = obtenerOrientacion();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
         listaSucursales = this.listadoSucursales();
         return SUCCESS;
     }
@@ -133,7 +145,10 @@ public class control extends ActionSupport {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
-        orientacion = obtenerOrientacion();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
         listaCategorias = this.listadoCategorias();
         return SUCCESS;
     }
@@ -142,7 +157,10 @@ public class control extends ActionSupport {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         nombreEmpresa = obtenerTitulo();
-        orientacion = obtenerOrientacion();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
         listaSucursales = this.listadoSucursales();
         listaUsuarios = this.listadoUsuarios();
         return SUCCESS;
@@ -210,6 +228,38 @@ public class control extends ActionSupport {
 
     public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
+    }
+
+    public String getFondoBody() {
+        return fondoBody;
+    }
+
+    public void setFondoBody(String fondoBody) {
+        this.fondoBody = fondoBody;
+    }
+
+    public String getLogoDB() {
+        return logoDB;
+    }
+
+    public void setLogoDB(String logoDB) {
+        this.logoDB = logoDB;
+    }
+
+    public String getBannerDB() {
+        return bannerDB;
+    }
+
+    public void setBannerDB(String bannerDB) {
+        this.bannerDB = bannerDB;
+    }
+
+    public String getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(String idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
 }

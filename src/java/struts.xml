@@ -39,9 +39,14 @@
         <action name="login" class="com.proyecto.principal.control" method="principal">
             <result>/login.jsp</result>
         </action>
+        
         <action name="loguear" class="com.proyecto.principal.loginAction">
             <result name="success" type="redirect">administrar</result>
             <result name="input">/login.jsp</result>
+        </action>
+        
+        <action name="logout" class="com.proyecto.principal.LogoutAction">
+            <result name="success" type="redirect">login</result>
         </action>
         <!-- FIN SECCION LOGIN -->
         
@@ -166,9 +171,27 @@
             <result>/modificarEmpresa.jsp</result>
         </action>
         <action name="modificarEmpresa" class="com.proyecto.principal.ControlEmpresa" method="agregaDatos">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <param name="bannerPath">img</param>
+            <param name="logoPath">img</param>
+            <interceptor-ref name="miPilaInterceptor">
+                <param name="fileUpload.maximumSize">5242880</param>
+                <param name="fileUpload.allowedTypes">image/jpeg,image/png</param>
+            </interceptor-ref>
             <result name="success" type="redirect">/empresa</result>
         </action>
         <!-- FIN SECCION PAGINA -->
+        
+        <!--
+        <action name="UploadFile" class="com.journaldev.struts2.actions.UploadFileAction">
+            <param name="filesPath">myfiles</param>
+            <result name="success">/UploadFileSuccess.jsp</result>
+            <result name="input">/UploadFile.jsp</result>
+ 
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.maximumSize">10485760</param>
+                <param name="fileUpload.allowedTypes">text/plain,image/jpeg,image/png</param>
+            </interceptor-ref>
+        </action>
+        -->
     </package>
 </struts>

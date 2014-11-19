@@ -146,7 +146,7 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`usuario` (
 
   `password` VARCHAR(20) NOT NULL ,
 
-  `permiso` CHAR NOT NULl ,
+  `permiso` CHAR NOT NULL ,
 
   `sucursalIdSucursal` INT ,
 
@@ -180,11 +180,13 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`empresa` (
 
   `nombreEmpresa` VARCHAR(80) NOT NULL ,
 
-  `fondoColor` VARCHAR(10) NULL ,
-
   `fondoImagen` VARCHAR(50) NULL DEFAULT 'img/Fondo.png' ,
 
-   `orientacion` VARCHAR(10) NOT NULL ,
+  `banner` VARCHAR(50) NULL DEFAULT 'img/Banner.png' ,
+
+  `logo` VARCHAR(50) NULL DEFAULT 'img/Logo.png' ,
+
+  `orientacion` VARCHAR(10) NOT NULL ,
 
   PRIMARY KEY (`nombreEmpresa`) )
 

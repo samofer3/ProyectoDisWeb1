@@ -1,5 +1,5 @@
 package com.proyecto.principal;
-// Generated 17/11/2014 10:10:26 PM by Hibernate Tools 4.3.1
+// Generated 18/11/2014 09:37:45 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,8 +10,9 @@ public class Empresa  implements java.io.Serializable {
 
 
      private String nombreEmpresa;
-     private String fondoColor;
      private String fondoImagen;
+     private String banner;
+     private String logo;
      private String orientacion;
 
     public Empresa() {
@@ -22,10 +23,11 @@ public class Empresa  implements java.io.Serializable {
         this.nombreEmpresa = nombreEmpresa;
         this.orientacion = orientacion;
     }
-    public Empresa(String nombreEmpresa, String fondoColor, String fondoImagen, String orientacion) {
+    public Empresa(String nombreEmpresa, String fondoImagen, String banner, String logo, String orientacion) {
        this.nombreEmpresa = nombreEmpresa;
-       this.fondoColor = fondoColor;
        this.fondoImagen = fondoImagen;
+       this.banner = banner;
+       this.logo = logo;
        this.orientacion = orientacion;
     }
    
@@ -36,19 +38,26 @@ public class Empresa  implements java.io.Serializable {
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
     }
-    public String getFondoColor() {
-        return this.fondoColor;
-    }
-    
-    public void setFondoColor(String fondoColor) {
-        this.fondoColor = fondoColor;
-    }
     public String getFondoImagen() {
         return this.fondoImagen;
     }
     
     public void setFondoImagen(String fondoImagen) {
         this.fondoImagen = fondoImagen;
+    }
+    public String getBanner() {
+        return this.banner;
+    }
+    
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+    public String getLogo() {
+        return this.logo;
+    }
+    
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
     public String getOrientacion() {
         return this.orientacion;
