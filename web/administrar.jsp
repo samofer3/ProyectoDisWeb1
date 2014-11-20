@@ -30,7 +30,8 @@
             </ul>
         </nav>
         <section>
-
+            <h1>BIENVENIDO DE NUEVO <s:property value="%{#session.user.user}" /></h1>
+            <s:property value="contenido" escapeHtml="false"/>
         </section>
         <footer>
             <p>Varios colaboradores</p>

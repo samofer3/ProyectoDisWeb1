@@ -4,17 +4,25 @@
  * and open the template in the editor.
  */
 
-
-window.onload = function ()
-{
+window.onload = function() {
     var permiso = document.getElementById("permiso");
-    permiso.onchange = enviar;
+    var checar = checar(permiso);
+    permiso.onchange = checarPermiso;
 
-    function enviar() {
+    function checar(permiso) {
         var sucursal = document.getElementById("sucursal");
         if (permiso.value == 3) {
             sucursal.disabled = "true";
-        }else{
+        } else {
+            sucursal.removeAttribute("disabled");
+        }
+        return true;
+    }
+    function checarPermiso() {
+        var sucursal = document.getElementById("sucursal");
+        if (permiso.value == 3) {
+            sucursal.disabled = "true";
+        } else {
             sucursal.removeAttribute("disabled");
         }
     }

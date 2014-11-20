@@ -20,13 +20,16 @@ public class control extends ActionSupport {
 
     Session session;
     private String menu;
+    private String contenido;
     private menuAction menuAction = new menuAction(); //GENERA EL MENU DE LA IZQUIERDA
+    private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LA PAGINA BIENVENIDO
     private String nombreEmpresa;
     private String orientacion;
     private String fondoBody;
     private String logoDB;
     private String bannerDB;
     private String idCategoria; //Evitar errores de uso GET
+    private String idUsuario; //Evitar errores de uso GET
     private String displayFormulario = "displayNone";
     private ArrayList<Sucursal> listaSucursales;
     private ArrayList<Categoria> listaCategorias;
@@ -110,6 +113,7 @@ public class control extends ActionSupport {
     public String principal() {
         menuAction.generarMenu();
         menu = menuAction.getMenu();
+
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerValoresEmpresa().getOrientacion();
         fondoBody = obtenerValoresEmpresa().getFondoImagen();
@@ -121,6 +125,8 @@ public class control extends ActionSupport {
     public String administrar() {
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
+        contenidoAction.generarContenidoAdministrador();
+        contenido = contenidoAction.getContenido();
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerValoresEmpresa().getOrientacion();
         fondoBody = obtenerValoresEmpresa().getFondoImagen();
@@ -260,6 +266,30 @@ public class control extends ActionSupport {
 
     public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public contenidoAction getContenidoAction() {
+        return contenidoAction;
+    }
+
+    public void setContenidoAction(contenidoAction contenidoAction) {
+        this.contenidoAction = contenidoAction;
     }
 
 }

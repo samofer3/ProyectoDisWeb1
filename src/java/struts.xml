@@ -56,45 +56,6 @@
             <result name="success">/administrar.jsp</result>
         </action>
         <!-- FIN SECCION INICIO ADMINISTRAR -->
-        
-        <!-- SECCION SUCURSAL -->
-        <action name="sucursal" class="com.proyecto.principal.control" method="administrar">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result>/administrarSucursal.jsp</result>
-        </action>
-        <action name="mostrarSucursales" class="com.proyecto.principal.control" method="administrarSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result>/mostrarSucursal.jsp</result>
-        </action>
-        <action name="obtenerSucursal" class="com.proyecto.principal.ControlSucursal" method="obtenerSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="chain">
-                <param name="actionName">mostrarSucursales</param>
-            </result>
-        </action>
-        <action name="editarSucursal" class="com.proyecto.principal.ControlSucursal" method="editarSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="chain">
-                <param name="actionName">sucursal</param>
-            </result>
-        </action>
-        <action name="eliminarSucursal" class="com.proyecto.principal.ControlSucursal" method="eliminarSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="chain">
-                <param name="actionName">sucursal</param>
-            </result>
-        </action>
-        <action name="anadirSucursal" class="com.proyecto.principal.control" method="administrarSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result>/registrarSucursal.jsp</result>
-        </action>
-        <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
-            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
-            <result name="success" type="chain">
-                <param name="actionName">sucursal</param>
-            </result>
-        </action>
-        <!-- FIN SECCION SUCURSAL -->
 
         <!-- SECCION ARTICULOS -->
         <!-- FIN SECCION ARTICULOS -->
@@ -138,6 +99,45 @@
         </action>
         <!-- FIN SECCION CATEGORIAS -->
         
+                <!-- SECCION SUCURSAL -->
+        <action name="sucursal" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/administrarSucursal.jsp</result>
+        </action>
+        <action name="mostrarSucursales" class="com.proyecto.principal.control" method="administrarSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/mostrarSucursal.jsp</result>
+        </action>
+        <action name="obtenerSucursal" class="com.proyecto.principal.ControlSucursal" method="obtenerSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">mostrarSucursales</param>
+            </result>
+        </action>
+        <action name="editarSucursal" class="com.proyecto.principal.ControlSucursal" method="editarSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">sucursal</param>
+            </result>
+        </action>
+        <action name="eliminarSucursal" class="com.proyecto.principal.ControlSucursal" method="eliminarSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">sucursal</param>
+            </result>
+        </action>
+        <action name="anadirSucursal" class="com.proyecto.principal.control" method="administrarSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/registrarSucursal.jsp</result>
+        </action>
+        <action name="registrarSucursal" class="com.proyecto.principal.ControlSucursal" method="agregaSucursal">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">sucursal</param>
+            </result>
+        </action>
+        <!-- FIN SECCION SUCURSAL -->
+        
         <!-- SECCION USUARIOS -->
         <action name="usuario" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
@@ -146,6 +146,18 @@
         <action name="mostrarUsuarios" class="com.proyecto.principal.control" method="administrarUsuario">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/mostrarUsuario.jsp</result>
+        </action>
+        <action name="obtenerUsuario" class="com.proyecto.principal.ControlUsuario" method="obtenerUsuario">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">mostrarUsuarios</param>
+            </result>
+        </action>
+        <action name="editarUsuario" class="com.proyecto.principal.ControlUsuario" method="editarUsuario">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">usuario</param>
+            </result>
         </action>
         <action name="eliminarUsuario" class="com.proyecto.principal.ControlUsuario" method="eliminarUsuario">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>

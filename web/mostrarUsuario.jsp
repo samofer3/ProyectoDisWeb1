@@ -14,6 +14,7 @@
         <title>Lista de usuarios</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/estilos.css">
+        <script src="js/funciones.js"></script>
         <script src="js/prefixfree.js"></script>
     </head>
     <body background='<s:property value="fondoBody"/>'>
@@ -31,13 +32,24 @@
             </ul>
         </nav>
         <section id="login">
-            <h1>Sucursales</h1>
+            <h1>Usuario</h1>
+            <div class='<s:property value="displayFormulario"/>'>
+                <s:form action="editarUsuario">
+                    <s:hidden name="usuario.idUsuario" />
+                    <s:textfield name="usuario.nombreUsuario" label="Nombre Usuario" required="true"/>
+                    <s:password name="usuario.password" label="Password" required="true" placeholder="Introduzca password"/>
+                    <s:select name="usuario.permiso" label="Permiso" list="#{'1':'Básico Sucursal', '2':'Control Sucursal', '3':'Control Total'}" value="usuario.permiso" id="permiso"/>
+                    <s:select name="usuario.sucursal.idSucursal" label="Sucursal" list="listaSucursales" listKey="idSucursal" listValue="nombreSucursal" value="usuario.sucursal.idSucursal" required="true" id="sucursal"/>
+                    <s:submit value="Registrar"/>
+                </s:form>
+            </div>
             <h2 class='<s:property value="displayLista"/>'>Lista de usuarios registrados</h2>
             <table border="1" id="listaTabla" class='tablaInformativa <s:property value="displayLista"/>'>
                 <tr>
                     <td>Nombre</td>
                     <td>Permiso</td>
                     <td>Sucursal</td>
+                    <td>Editar</td>
                     <td>Eliminar</td>
                 </tr>
                 <s:iterator value="listaUsuarios">
@@ -45,6 +57,9 @@
                         <td><s:property value="nombreUsuario"/></td>
                         <td><s:property value="permiso"/></td>
                         <td><s:property value="sucursal.idSucursal"/></td>
+                        <td><s:url id="editarUsuario" action="obtenerUsuario">
+                                <s:param name="idUsuario" value="%{idUsuario}"></s:param>
+                            </s:url> <s:a href="%{editarUsuario}">Editar</s:a></td>
                         <td><s:url id="eliminarUsuario" action="eliminarUsuario">
                                 <s:param name="idUsuario" value="%{idUsuario}"></s:param>
                             </s:url> <s:a href="%{eliminarUsuario}">Eliminar</s:a></td>

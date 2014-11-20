@@ -21,30 +21,32 @@ import org.hibernate.Transaction;
  *
  * @author ferna_000
  */
-public class menuAction extends ActionSupport{
+public class menuAction extends ActionSupport {
+
     Session session; //Sesion del hibernate
     private String menu;
     private ArrayList<Categoria> listaCategorias;
 
-    
-
     public void generarMenuAdministrador() {
-        HttpSession session=ServletActionContext.getRequest().getSession(false);
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
         User user = (User) session.getAttribute("user");
         char permiso = obtenerPermiso(user.getUser());
-        System.out.println(""+permiso);
-        menu = crearMenuAdministrador();
+        menu = crearMenuAdministrador(permiso);
     }
 
-    public String crearMenuAdministrador() {
+    public String crearMenuAdministrador(char permiso) {
         StringBuffer menu = new StringBuffer();
 
-        menu.append((String) "<li><a href='index'>Inicio</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='sucursal'>Administrar Sucursal</a></li>\n");
+        menu.append((String) "\t\t\t\t<li><a href='administrar'>Menú principal</a></li>\n");
         menu.append((String) "\t\t\t\t<li><a href='#'>Administrar Articulos</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='usuario'>Administrar Usuarios</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='empresa'>Administrar Pagina</a></li>\n");
+        if (permiso == '2') {
+            menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
+        } else if(permiso == '3'){
+            menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
+            menu.append((String) "\t\t\t\t<li><a href='sucursal'>Administrar Sucursal</a></li>\n");
+            menu.append((String) "\t\t\t\t<li><a href='usuario'>Administrar Usuarios</a></li>\n");
+            menu.append((String) "\t\t\t\t<li><a href='empresa'>Administrar Pagina</a></li>\n");
+        }
         menu.append((String) "\t\t\t\t</br>\n");
         menu.append((String) "\t\t\t\t</br>\n");
         menu.append((String) "\t\t\t\t<li class='center'><a href='logout' >Salir</a></li>\n");
@@ -87,7 +89,7 @@ public class menuAction extends ActionSupport{
         }
         return nombreLista;
     }
-    
+
     public char obtenerPermiso(String nombre) {
         char nombreLista = '1';
 

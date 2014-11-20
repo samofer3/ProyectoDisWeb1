@@ -32,6 +32,7 @@ public class ControlUsuario extends ActionSupport {
     private String displayFormulario;
     private String displayLista = "displayTrue";
     private String mensaje = "";
+    private String idUsuario; //Evitar errores de uso GET
 
     public String agregaUsuario() {
         mensaje = "";
@@ -50,6 +51,61 @@ public class ControlUsuario extends ActionSupport {
             session.save(getUsuario());
             tx.commit();
             mensaje = "Usuario añadido con éxito";
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return SUCCESS;
+    }
+
+    public String obtenerUsuario() {
+        mensaje = "";
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Integer id = Integer.parseInt(request.getParameter("idUsuario"));
+            usuario = (Usuario) session.get(Usuario.class, id);
+            System.out.println("OBTENCION --" + usuario.getIdUsuario());
+            System.out.println("" + usuario.getNombreUsuario());
+            System.out.println("" + usuario.getPassword());
+            System.out.println("" + usuario.getPermiso());
+            System.out.println("" + usuario.getSucursal().getIdSucursal());
+            displayFormulario = "displayTrue";
+            displayLista = "displayNone";
+            tx.commit();
+
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return SUCCESS;
+    }
+
+    public String editarUsuario() {
+        mensaje = "";
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        System.out.println("EDICION --" + usuario.getIdUsuario());
+        System.out.println("" + usuario.getNombreUsuario());
+        System.out.println("" + usuario.getPassword());
+        System.out.println("" + usuario.getPermiso());
+        System.out.println("" + usuario.getSucursal().getIdSucursal());
+
+        try {
+            tx = session.beginTransaction();
+            session.update(usuario);
+            tx.commit();
+            mensaje = "Usuario modificado con éxito";
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -146,6 +202,14 @@ public class ControlUsuario extends ActionSupport {
 
     public void setSucursal(String sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }
