@@ -35,13 +35,13 @@ public class contenidoAction extends ActionSupport {
                 contenido.append((String) "<article>\n");
                 contenido.append((String) "\t<h2>" + articulo.getNombreArticulo() + "</h2>\n");
                 contenido.append((String) "\t<figure>\n");
-                contenido.append((String) "\t\t<img src='img/Logo.png' alt='" + articulo.getNombreArticulo() + "' class='escale'>\n");
+                contenido.append((String) "\t\t<img src='" + articulo.getDireccionImg() + "' alt='" + articulo.getNombreArticulo() + "' class='escale'>\n");
                 contenido.append((String) "\t</figure>\n");
                 contenido.append((String) "\t<div class='a-texto'>\n");
                 contenido.append((String) "\t\t<p><strong>Descripción:</strong>" + articulo.getDescripcion() + "</p>\n");
                 contenido.append((String) "\t\t<p><strong>Precio:</strong> $" + articulo.getPrecio() + "</p>\n");
                 contenido.append((String) "\t\t<p><strong>Disponibilidad:</strong> 120</p>\n");
-                contenido.append((String) "\t\t<p><strong>Sucursal:</strong> <a href='#'>Ver sucursales</a></p>\n");
+                contenido.append((String) "\t\t<p><strong>Sucursal:</strong> <a href='#' target='_blank'>Ver sucursales</a></p>\n");
                 contenido.append((String) "\t</div>\n");
                 contenido.append((String) "</article>\n");
             }

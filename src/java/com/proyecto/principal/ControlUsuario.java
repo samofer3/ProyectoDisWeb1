@@ -71,11 +71,6 @@ public class ControlUsuario extends ActionSupport {
             tx = session.beginTransaction();
             Integer id = Integer.parseInt(request.getParameter("idUsuario"));
             usuario = (Usuario) session.get(Usuario.class, id);
-            System.out.println("OBTENCION --" + usuario.getIdUsuario());
-            System.out.println("" + usuario.getNombreUsuario());
-            System.out.println("" + usuario.getPassword());
-            System.out.println("" + usuario.getPermiso());
-            System.out.println("" + usuario.getSucursal().getIdSucursal());
             displayFormulario = "displayTrue";
             displayLista = "displayNone";
             tx.commit();
@@ -95,12 +90,6 @@ public class ControlUsuario extends ActionSupport {
         mensaje = "";
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        System.out.println("EDICION --" + usuario.getIdUsuario());
-        System.out.println("" + usuario.getNombreUsuario());
-        System.out.println("" + usuario.getPassword());
-        System.out.println("" + usuario.getPermiso());
-        System.out.println("" + usuario.getSucursal().getIdSucursal());
-
         try {
             tx = session.beginTransaction();
             session.update(usuario);

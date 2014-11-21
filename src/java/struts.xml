@@ -58,6 +58,52 @@
         <!-- FIN SECCION INICIO ADMINISTRAR -->
 
         <!-- SECCION ARTICULOS -->
+        <action name="articulo" class="com.proyecto.principal.control" method="administrar">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/administrarArticulo.jsp</result>
+        </action>
+        <action name="mostrarArticulos" class="com.proyecto.principal.control" method="administrarArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result>/mostrarArticulo.jsp</result>
+        </action>
+        <action name="obtenerArticulo" class="com.proyecto.principal.ControlArticulo" method="obtenerArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">mostrarArticulos</param>
+            </result>
+        </action>
+        <action name="editarArticulo" class="com.proyecto.principal.ControlArticulo" method="editarArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <param name="direccionImgPath">img/articulos</param>
+            <interceptor-ref name="miPilaInterceptor">
+                <param name="fileUpload.maximumSize">5242880</param>
+                <param name="fileUpload.allowedTypes">image/jpeg,image/png</param>
+            </interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">articulo</param>
+            </result>
+        </action>
+        <action name="eliminarArticulo" class="com.proyecto.principal.ControlArticulo" method="eliminarArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">articulo</param>
+            </result>
+        </action>
+        <action name="anadirArticulo" class="com.proyecto.principal.control" method="administrarArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/registrarArticulo.jsp</result>
+        </action>
+        <action name="registrarArticulo" class="com.proyecto.principal.ControlArticulo" method="agregaArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <param name="direccionImgPath">img/articulos</param>
+            <interceptor-ref name="miPilaInterceptor">
+                <param name="fileUpload.maximumSize">5242880</param>
+                <param name="fileUpload.allowedTypes">image/jpeg,image/png</param>
+            </interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">articulo</param>
+            </result>
+        </action>
         <!-- FIN SECCION ARTICULOS -->
         
         <!-- SECCION CATEGORIAS -->
@@ -99,7 +145,7 @@
         </action>
         <!-- FIN SECCION CATEGORIAS -->
         
-                <!-- SECCION SUCURSAL -->
+        <!-- SECCION SUCURSAL -->
         <action name="sucursal" class="com.proyecto.principal.control" method="administrar">
             <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result>/administrarSucursal.jsp</result>

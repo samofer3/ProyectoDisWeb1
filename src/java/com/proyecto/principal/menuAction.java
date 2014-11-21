@@ -38,7 +38,7 @@ public class menuAction extends ActionSupport {
         StringBuffer menu = new StringBuffer();
 
         menu.append((String) "\t\t\t\t<li><a href='administrar'>Menú principal</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='#'>Administrar Articulos</a></li>\n");
+        menu.append((String) "\t\t\t\t<li><a href='articulo'>Administrar Artículos</a></li>\n");
         if (permiso == '2') {
             menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
         } else if(permiso == '3'){

@@ -34,6 +34,7 @@ public class control extends ActionSupport {
     private ArrayList<Sucursal> listaSucursales;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Usuario> listaUsuarios;
+    private ArrayList<Articulo> listaArticulos;
 
     public String obtenerTitulo() {
         String resultado = "";
@@ -55,13 +56,29 @@ public class control extends ActionSupport {
         session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            resultado = (Empresa)session.createQuery("from Empresa empresa").list().get(0);
+            resultado = (Empresa) session.createQuery("from Empresa empresa").list().get(0);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
         return resultado;
+    }
+    
+    public ArrayList<Articulo> listadoArticulos() {
+        ArrayList<Articulo> nombreLista = null;
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Articulo>) session.createQuery("from Articulo").list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return nombreLista;
     }
 
     public ArrayList<Sucursal> listadoSucursales() {
@@ -93,10 +110,10 @@ public class control extends ActionSupport {
         }
         return nombreLista;
     }
-    
+
     public ArrayList<Usuario> listadoUsuarios() {
         ArrayList<Usuario> nombreLista = null;
-        
+
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -113,7 +130,6 @@ public class control extends ActionSupport {
     public String principal() {
         menuAction.generarMenu();
         menu = menuAction.getMenu();
-
         nombreEmpresa = obtenerTitulo();
         orientacion = obtenerValoresEmpresa().getOrientacion();
         fondoBody = obtenerValoresEmpresa().getFondoImagen();
@@ -132,6 +148,21 @@ public class control extends ActionSupport {
         fondoBody = obtenerValoresEmpresa().getFondoImagen();
         logoDB = obtenerValoresEmpresa().getLogo();
         bannerDB = obtenerValoresEmpresa().getBanner();
+        return SUCCESS;
+    }
+
+    public String administrarArticulo() {
+        menuAction.generarMenuAdministrador();
+        menu = menuAction.getMenu();
+        nombreEmpresa = obtenerTitulo();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
+        listaSucursales = this.listadoSucursales();
+        listaUsuarios = this.listadoUsuarios();
+        listaCategorias = this.listadoCategorias();
+        listaArticulos = this.listadoArticulos();
         return SUCCESS;
     }
 
@@ -290,6 +321,14 @@ public class control extends ActionSupport {
 
     public void setContenidoAction(contenidoAction contenidoAction) {
         this.contenidoAction = contenidoAction;
+    }
+
+    public ArrayList<Articulo> getListaArticulos() {
+        return listaArticulos;
+    }
+
+    public void setListaArticulos(ArrayList<Articulo> listaArticulos) {
+        this.listaArticulos = listaArticulos;
     }
 
 }
