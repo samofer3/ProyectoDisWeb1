@@ -36,7 +36,7 @@
             <div id="enlacesSection" class="enlacesArticulos">
                 <a href='mostrarArticulos'>Lista de artículos</a>
                 <a href='anadirArticulo'>Registrar artículos</a>
-                <a href='anadirExistencias'>Editar existencias artículos</a>
+                <a href='<s:property value="existenciasArticulo" />'>Editar existencias artículos</a>
             </div>
         </section>
         <footer>

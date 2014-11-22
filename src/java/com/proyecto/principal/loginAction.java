@@ -11,6 +11,7 @@ public class loginAction extends ActionSupport implements SessionAware, ModelDri
     Session session;
     private User user = new User();
     private char permiso;
+    private int sucursal;
     private Map<String,Object> sessionAttributes = null;
     
     @Override
@@ -39,6 +40,9 @@ public class loginAction extends ActionSupport implements SessionAware, ModelDri
             if (usuario1.getNombreUsuario().equals(user.getUser()) && 
                     usuario1.getPassword().equals(user.getPassword())) {
                 permiso = usuario1.getPermiso();
+                if (permiso != '3') {
+                    this.user.setIdSucursal(usuario1.getSucursal().getIdSucursal());
+                }
                 return true;
             }
         }

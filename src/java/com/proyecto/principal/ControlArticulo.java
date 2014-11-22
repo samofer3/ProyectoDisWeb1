@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import java.io.File;
 import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
@@ -23,11 +24,13 @@ import org.hibernate.Transaction;
  *
  * @author ferna_000
  */
-public class ControlArticulo extends ActionSupport implements ServletContextAware{
+public class ControlArticulo extends ActionSupport implements ServletContextAware {
 
     Session session;
     private Articulo articulo = new Articulo();
     private Categoria categoriaObjeto = new Categoria();
+    private Sucursal sucursal = new Sucursal();
+    private Articulosucursal articuloSucursal = new Articulosucursal();
     private String nombreArticulo;
     private String descripcion;
     private File direccionImg;
@@ -36,12 +39,15 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
     private String direccionImgPath;
     private float precio;
     private String categoria;
+    private int unidad;
+    private int articuloIdArticulo;
+    private int sucursalIdSucursal;
     private String displayFormulario;
     private String displayLista = "displayTrue";
     private String mensaje = "";
     private ServletContext context;
 
-    public String agregaArticulo() throws Exception{
+    public String agregaArticulo() throws Exception {
         mensaje = "";
         articulo.setNombreArticulo(nombreArticulo);
         articulo.setDescripcion(descripcion);
@@ -55,12 +61,12 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
         try {
             tx = session.beginTransaction();
             if (direccionImgContentType.equals("image/jpeg")) {
-                    setDireccionImgFileName(articulo.getIdArticulo()+".jpg");
-                }else{
-                    setDireccionImgFileName(articulo.getIdArticulo()+".png");
-                }
-                FilesUtil.saveFile(getDireccionImg(), getDireccionImgFileName(), context.getRealPath("") + File.separator + direccionImgPath);
-                articulo.setDireccionImg(direccionImgPath + "/" + getDireccionImgFileName());
+                setDireccionImgFileName(articulo.getIdArticulo() + ".jpg");
+            } else {
+                setDireccionImgFileName(articulo.getIdArticulo() + ".png");
+            }
+            FilesUtil.saveFile(getDireccionImg(), getDireccionImgFileName(), context.getRealPath("") + File.separator + direccionImgPath);
+            articulo.setDireccionImg(direccionImgPath + "/" + getDireccionImgFileName());
             session.save(articulo);
             tx.commit();
             mensaje = "Articulo añadido con éxito";
@@ -98,35 +104,26 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
         return SUCCESS;
     }
 
-    public String editarArticulo() throws Exception{
+    public String editarArticulo() throws Exception {
         mensaje = "";
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            Articulo viejo = (Articulo)session.createQuery("from Articulo articulo where idArticulo ='" + articulo.getIdArticulo() + "'").list().get(0);
+            Articulo viejo = (Articulo) session.createQuery("from Articulo articulo where idArticulo ='" + articulo.getIdArticulo() + "'").list().get(0);
             session.clear();
             String direcionImgRespaldo = viejo.getDireccionImg();
-            System.out.println("RECUPERANDO DATOS --"+direcionImgRespaldo);
             if (direccionImg != null) {
-                System.out.println("Diferente de null");
                 if (direccionImgContentType.equals("image/jpeg")) {
-                    setDireccionImgFileName(articulo.getIdArticulo()+".jpg");
-                }else{
-                    setDireccionImgFileName(articulo.getIdArticulo()+".png");
+                    setDireccionImgFileName(articulo.getIdArticulo() + ".jpg");
+                } else {
+                    setDireccionImgFileName(articulo.getIdArticulo() + ".png");
                 }
                 FilesUtil.saveFile(getDireccionImg(), getDireccionImgFileName(), context.getRealPath("") + File.separator + direccionImgPath);
                 articulo.setDireccionImg(direccionImgPath + "/" + getDireccionImgFileName());
-            }else{
-                System.out.println("Igual a null");
+            } else {
                 articulo.setDireccionImg(direcionImgRespaldo);
             }
-            System.out.println("ANTES DEL UPDATE"+articulo.getIdArticulo());
-            System.out.println(""+articulo.getDescripcion());
-            System.out.println(""+articulo.getNombreArticulo());
-            System.out.println(""+articulo.getPrecio());
-            System.out.println(""+articulo.getDireccionImg());
-            System.out.println(""+articulo.getCategoria().getIdCategoria());
             session.update(articulo);
             tx.commit();
             mensaje = "Artículo modificado con éxito";
@@ -157,6 +154,35 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
             if (tx != null) {
                 tx.rollback();
             }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return SUCCESS;
+    }
+
+    public String agregaExistencias() {
+        articulo.setIdArticulo(articuloIdArticulo);
+        sucursal.setIdSucursal(sucursalIdSucursal);
+        articuloSucursal.setUnidad(unidad);
+        articuloSucursal.setArticulo(articulo);
+        articuloSucursal.setSucursal(sucursal);
+        ArrayList<Articulosucursal> unidadVieja = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            unidadVieja = (ArrayList<Articulosucursal>) session.createQuery("from Articulosucursal where articulo = " + articuloIdArticulo + " and sucursal = " + sucursalIdSucursal).list();
+            session.clear();
+            if (!unidadVieja.isEmpty()) {
+                articuloSucursal.setIdArticuloSucursal(unidadVieja.get(0).getIdArticuloSucursal());
+                session.update(articuloSucursal);
+            }else{
+                session.save(articuloSucursal);
+            }
+            mensaje="Existencia modificada con exito";
+            tx.commit();
+        } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
@@ -244,7 +270,6 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
         this.precio = precio;
     }
 
-
     public String getDisplayFormulario() {
         return displayFormulario;
     }
@@ -276,10 +301,50 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    
+
+    public int getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(int unidad) {
+        this.unidad = unidad;
+    }
+
+    public int getArticuloIdArticulo() {
+        return articuloIdArticulo;
+    }
+
+    public void setArticuloIdArticulo(int articuloIdArticulo) {
+        this.articuloIdArticulo = articuloIdArticulo;
+    }
+
+    public int getSucursalIdSucursal() {
+        return sucursalIdSucursal;
+    }
+
+    public void setSucursalIdSucursal(int sucursalIdSucursal) {
+        this.sucursalIdSucursal = sucursalIdSucursal;
+    }
+
+    public Articulosucursal getArticuloSucursal() {
+        return articuloSucursal;
+    }
+
+    public void setArticuloSucursal(Articulosucursal articuloSucursal) {
+        this.articuloSucursal = articuloSucursal;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
     @Override
     public void setServletContext(ServletContext ctx) {
-        this.context=ctx;
+        this.context = ctx;
     }
 
 }

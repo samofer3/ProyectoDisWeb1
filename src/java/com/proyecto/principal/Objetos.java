@@ -12,7 +12,6 @@ package com.proyecto.principal;
 public class Objetos {
     private Articulo articulo = new Articulo();
     private Articulosucursal articuloSucursal = new Articulosucursal();
-    private ArticulosucursalId articuloSucursalId = new ArticulosucursalId();
     private Categoria categoria = new Categoria();
     private Comentarios comentarios = new Comentarios();
     private Sucursal sucursal = new Sucursal();
@@ -34,13 +33,6 @@ public class Objetos {
         this.articuloSucursal = articuloSucursal;
     }
 
-    public ArticulosucursalId getArticuloSucursalId() {
-        return articuloSucursalId;
-    }
-
-    public void setArticuloSucursalId(ArticulosucursalId articuloSucursalId) {
-        this.articuloSucursalId = articuloSucursalId;
-    }
 
     public Categoria getCategoria() {
         return categoria;

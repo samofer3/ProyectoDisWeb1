@@ -1,21 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/11/2014 09:37:47 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/11/2014 10:23:52 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.proyecto.principal.Articulosucursal" table="articulosucursal" catalog="proyecto" optimistic-lock="version">
-        <composite-id name="id" class="com.proyecto.principal.ArticulosucursalId">
-            <key-property name="articuloIdArticulo" type="int">
-                <column name="articuloIdArticulo" />
-            </key-property>
-            <key-property name="sucursalIdSucursal" type="int">
-                <column name="sucursalIdSucursal" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="articulo" class="com.proyecto.principal.Articulo" update="false" insert="false" fetch="select">
+        <id name="idArticuloSucursal" type="java.lang.Integer">
+            <column name="idArticuloSucursal" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="articulo" class="com.proyecto.principal.Articulo" fetch="select">
             <column name="articuloIdArticulo" not-null="true" />
         </many-to-one>
-        <many-to-one name="sucursal" class="com.proyecto.principal.Sucursal" update="false" insert="false" fetch="select">
+        <many-to-one name="sucursal" class="com.proyecto.principal.Sucursal" fetch="select">
             <column name="sucursalIdSucursal" not-null="true" />
         </many-to-one>
         <property name="unidad" type="int">

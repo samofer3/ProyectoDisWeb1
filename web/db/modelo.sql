@@ -204,6 +204,8 @@ ENGINE = InnoDB;
 
 CREATE  TABLE IF NOT EXISTS `proyecto`.`articuloSucursal` (
 
+  `idArticuloSucursal` INT NOT NULL AUTO_INCREMENT ,
+
   `unidad` INT NOT NULL ,
 
   `articuloIdArticulo` INT NOT NULL ,
@@ -214,7 +216,7 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articuloSucursal` (
 
   INDEX `fk_articulo_has_sucursal_articulo1` (`articuloIdArticulo` ASC) ,
 
-  PRIMARY KEY (`articuloIdArticulo`, `sucursalIdSucursal`) ,
+  PRIMARY KEY (`idArticuloSucursal`) ,
 
   CONSTRAINT `fk_articulo_has_sucursal_articulo1`
 
@@ -237,7 +239,6 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articuloSucursal` (
     ON UPDATE NO ACTION)
 
 ENGINE = InnoDB;
-
 
 
 

@@ -28,6 +28,7 @@ public class ListaArticulos extends ActionSupport {
     private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LOS ARTICULOS
     private Articulo articulos = new Articulo();
     private ArrayList<Articulo> listaArticulos;
+    private ArrayList<Articulosucursal> listaArticuloSucursal;
 
     public String generarArticulos() {
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
@@ -38,8 +39,29 @@ public class ListaArticulos extends ActionSupport {
             contenidoAction.generarContenido(listaArticulos);
             contenido = contenidoAction.getContenido();
         }
+        return SUCCESS;
+    }
+
+    public String generarInfoArticulo() {
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        int id = Integer.parseInt(request.getParameter("idArticulo"));
+        listadoInfoArticulos(id);
+        contenidoAction.generarContenidoInfo(listaArticuloSucursal);
+        contenido = contenidoAction.getContenido();
 
         return SUCCESS;
+    }
+
+    public void listadoInfoArticulos(int id) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            listaArticuloSucursal = (ArrayList<Articulosucursal>) session.createQuery("from Articulosucursal a where articulo = " + id).list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public void listadoArticulos(int id) {
@@ -112,6 +134,14 @@ public class ListaArticulos extends ActionSupport {
 
     public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public ArrayList<Articulosucursal> getListaArticuloSucursal() {
+        return listaArticuloSucursal;
+    }
+
+    public void setListaArticuloSucursal(ArrayList<Articulosucursal> listaArticuloSucursal) {
+        this.listaArticuloSucursal = listaArticuloSucursal;
     }
 
 }

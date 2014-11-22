@@ -1,5 +1,5 @@
 package com.proyecto.principal;
-// Generated 18/11/2014 09:37:45 PM by Hibernate Tools 4.3.1
+// Generated 21/11/2014 10:23:50 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package com.proyecto.principal;
 public class Articulosucursal  implements java.io.Serializable {
 
 
-     private ArticulosucursalId id;
+     private Integer idArticuloSucursal;
      private Articulo articulo;
      private Sucursal sucursal;
      private int unidad;
@@ -17,19 +17,18 @@ public class Articulosucursal  implements java.io.Serializable {
     public Articulosucursal() {
     }
 
-    public Articulosucursal(ArticulosucursalId id, Articulo articulo, Sucursal sucursal, int unidad) {
-       this.id = id;
+    public Articulosucursal(Articulo articulo, Sucursal sucursal, int unidad) {
        this.articulo = articulo;
        this.sucursal = sucursal;
        this.unidad = unidad;
     }
    
-    public ArticulosucursalId getId() {
-        return this.id;
+    public Integer getIdArticuloSucursal() {
+        return this.idArticuloSucursal;
     }
     
-    public void setId(ArticulosucursalId id) {
-        this.id = id;
+    public void setIdArticuloSucursal(Integer idArticuloSucursal) {
+        this.idArticuloSucursal = idArticuloSucursal;
     }
     public Articulo getArticulo() {
         return this.articulo;

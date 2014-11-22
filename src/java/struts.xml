@@ -33,6 +33,13 @@
                 <param name="actionName">index</param>
             </result>
         </action>
+        
+        <action name="articuloSucursal" class="com.proyecto.principal.ListaArticulos" method="generarInfoArticulo">
+            <result name="success" type="chain">
+                <param name="actionName">index</param>
+            </result>
+        </action>
+
         <!-- FIN SECCION INDEX -->
         
         <!-- SECCION LOGIN -->
@@ -100,6 +107,20 @@
                 <param name="fileUpload.maximumSize">5242880</param>
                 <param name="fileUpload.allowedTypes">image/jpeg,image/png</param>
             </interceptor-ref>
+            <result name="success" type="chain">
+                <param name="actionName">articulo</param>
+            </result>
+        </action>
+        <action name="anadirExistenciasTotal" class="com.proyecto.principal.control" method="administrarArticulo">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/registrarExistenciasAdm.jsp</result>
+        </action>
+        <action name="anadirExistencias" class="com.proyecto.principal.control" method="administrarArticuloUser">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
+            <result name="success">/registrarExistencias.jsp</result>
+        </action>
+        <action name="registrarExistencias" class="com.proyecto.principal.ControlArticulo" method="agregaExistencias">
+            <interceptor-ref name="miPilaInterceptor"></interceptor-ref>
             <result name="success" type="chain">
                 <param name="actionName">articulo</param>
             </result>

@@ -12,6 +12,7 @@ package com.proyecto.principal;
 public class User {
     private String user;
     private String password;
+    private int idSucursal;
 
     public String getUser() {
         return user;
@@ -27,6 +28,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
     }
 
     

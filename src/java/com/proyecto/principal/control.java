@@ -5,9 +5,13 @@
  */
 package com.proyecto.principal;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,13 +32,17 @@ public class control extends ActionSupport {
     private String fondoBody;
     private String logoDB;
     private String bannerDB;
+    private String existenciasArticulo;
     private String idCategoria; //Evitar errores de uso GET
     private String idUsuario; //Evitar errores de uso GET
+    private String idSucursal;//Evitar errores de uso GET
+    private String idArticulo;//Evitar errores de uso GET
     private String displayFormulario = "displayNone";
     private ArrayList<Sucursal> listaSucursales;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Articulo> listaArticulos;
+    private ArrayList<Articulosucursal> listaUnidades;
 
     public String obtenerTitulo() {
         String resultado = "";
@@ -64,7 +72,34 @@ public class control extends ActionSupport {
         }
         return resultado;
     }
-    
+
+    public String urlPermisoArticulos() {
+        HttpSession session = ServletActionContext.getRequest().getSession(false);
+        User user = (User) session.getAttribute("user");
+        ArrayList<Usuario> lista = obtenerPermiso(user.getUser());
+        char permiso = lista.get(0).getPermiso();
+        if (permiso == '3') {
+            return "anadirExistenciasTotal";
+        } else {
+            return "anadirExistencias";
+        }
+    }
+
+    public ArrayList<Usuario> obtenerPermiso(String nombre) {
+        ArrayList<Usuario> nombreLista = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Usuario>) (session.createQuery("from Usuario usuario where nombreUsuario = '" + nombre + "'").list());
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return nombreLista;
+    }
+
     public ArrayList<Articulo> listadoArticulos() {
         ArrayList<Articulo> nombreLista = null;
 
@@ -73,6 +108,22 @@ public class control extends ActionSupport {
         try {
             tx = session.beginTransaction();
             nombreLista = (ArrayList<Articulo>) session.createQuery("from Articulo").list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return nombreLista;
+    }
+
+    public ArrayList<Articulosucursal> listadoUnidades() {
+        ArrayList<Articulosucursal> nombreLista = null;
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            nombreLista = (ArrayList<Articulosucursal>) session.createQuery("from Articulosucursal").list();
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -139,6 +190,7 @@ public class control extends ActionSupport {
     }
 
     public String administrar() {
+        existenciasArticulo = urlPermisoArticulos();
         menuAction.generarMenuAdministrador();
         menu = menuAction.getMenu();
         contenidoAction.generarContenidoAdministrador();
@@ -159,6 +211,25 @@ public class control extends ActionSupport {
         fondoBody = obtenerValoresEmpresa().getFondoImagen();
         logoDB = obtenerValoresEmpresa().getLogo();
         bannerDB = obtenerValoresEmpresa().getBanner();
+        listaUnidades = this.listadoUnidades();
+        listaSucursales = this.listadoSucursales();
+        listaUsuarios = this.listadoUsuarios();
+        listaCategorias = this.listadoCategorias();
+        listaArticulos = this.listadoArticulos();
+        return SUCCESS;
+    }
+
+    public String administrarArticuloUser() {
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        idSucursal = request.getParameter("idSucursal");
+        menuAction.generarMenuAdministrador();
+        menu = menuAction.getMenu();
+        nombreEmpresa = obtenerTitulo();
+        orientacion = obtenerValoresEmpresa().getOrientacion();
+        fondoBody = obtenerValoresEmpresa().getFondoImagen();
+        logoDB = obtenerValoresEmpresa().getLogo();
+        bannerDB = obtenerValoresEmpresa().getBanner();
+        listaUnidades = this.listadoUnidades();
         listaSucursales = this.listadoSucursales();
         listaUsuarios = this.listadoUsuarios();
         listaCategorias = this.listadoCategorias();
@@ -329,6 +400,38 @@ public class control extends ActionSupport {
 
     public void setListaArticulos(ArrayList<Articulo> listaArticulos) {
         this.listaArticulos = listaArticulos;
+    }
+
+    public String getExistenciasArticulo() {
+        return existenciasArticulo;
+    }
+
+    public void setExistenciasArticulo(String existenciasArticulo) {
+        this.existenciasArticulo = existenciasArticulo;
+    }
+
+    public ArrayList<Articulosucursal> getListaUnidades() {
+        return listaUnidades;
+    }
+
+    public void setListaUnidades(ArrayList<Articulosucursal> listaUnidades) {
+        this.listaUnidades = listaUnidades;
+    }
+
+    public String getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(String idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+
+    public String getIdArticulo() {
+        return idArticulo;
+    }
+
+    public void setIdArticulo(String idArticulo) {
+        this.idArticulo = idArticulo;
     }
 
 }
