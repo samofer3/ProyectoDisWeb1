@@ -25,6 +25,7 @@ public class ListaArticulos extends ActionSupport {
     Session session;
     private String contenido;
     private String idCategoria; //Evitar errores de uso GET
+    private String idArticulo; //Evitar errores de uso GET
     private contenidoAction contenidoAction = new contenidoAction(); //GENERA EL CONTENIDO DE LOS ARTICULOS
     private Articulo articulos = new Articulo();
     private ArrayList<Articulo> listaArticulos;
@@ -142,6 +143,14 @@ public class ListaArticulos extends ActionSupport {
 
     public void setListaArticuloSucursal(ArrayList<Articulosucursal> listaArticuloSucursal) {
         this.listaArticuloSucursal = listaArticuloSucursal;
+    }
+
+    public String getIdArticulo() {
+        return idArticulo;
+    }
+
+    public void setIdArticulo(String idArticulo) {
+        this.idArticulo = idArticulo;
     }
 
 }
