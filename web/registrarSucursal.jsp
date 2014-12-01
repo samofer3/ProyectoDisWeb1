@@ -33,10 +33,10 @@
         <section id="login">
             <h1>Registra una nueva sucursal</h1>
             <s:form action="registrarSucursal">
-                <s:textfield name="nombreSucursal" label="Nombre Surcursal" required="true"/>
-                <s:textfield name="direccion" label="Dirección" required="true"/>
-                <s:textfield name="numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" maxLength="7"/>
-                <s:textfield name="email" type="email" label="E-mail" required="true"/>
+                <s:textfield name="nombreSucursal" label="Nombre Surcursal" required="true" maxlength="45"/>
+                <s:textfield name="direccion" label="Dirección" required="true" maxlength="100"/>
+                <s:textfield name="numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" min="1000000" max="9999999"/>
+                <s:textfield name="email" type="email" label="E-mail" required="true" maxlength="45"/>
                 <s:submit value="Registrar"/>
             </s:form>
             <table border="1" id="listaTabla" class="tablaInformativa">

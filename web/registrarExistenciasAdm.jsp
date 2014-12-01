@@ -35,7 +35,7 @@
             <s:form action="registrarExistencias">
                 <s:select name="articuloIdArticulo" label="Artículo" list="listaArticulos" listKey="idArticulo" listValue="nombreArticulo" />
                 <s:select name="sucursalIdSucursal" label="Sucursal" list="listaSucursales" listKey="idSucursal" listValue="nombreSucursal" />
-                <s:textfield name="unidad" label="Unidades" required="true" type="number"/>
+                <s:textfield name="unidad" label="Unidades" required="true" type="number" min="1" max="9999999"/>
                 <s:submit value="Registrar"/>
             </s:form>
             <table border="1" id="listaTabla" class="tablaInformativa">
@@ -48,8 +48,12 @@
                 <s:iterator value="listaUnidades">
                     <tr class="tablaContenido">
                         <td><s:property value="unidad"/></td>
-                        <td><s:select name="articuloIdArticulo" list="listaArticulos" listKey="idArticulo" listValue="nombreArticulo" value="articulo.idArticulo" disabled="true"/></td>
-                        <td><s:select name="sucursalIdSucursal" list="listaSucursales" listKey="idSucursal" listValue="nombreSucursal" value="sucursal.idSucursal" disabled="true"/></td>
+                        <td><s:iterator value="listaArticulos">
+                            <s:if test="idArticulo==articulo.idArticulo"><s:property value="nombreArticulo" /></s:if>
+                            </s:iterator></td>
+                        <td><s:iterator value="listaSucursales">
+                            <s:if test="idSucursal==sucursal.idSucursal"><s:property value="nombreSucursal" /></s:if>
+                            </s:iterator></td>
                     </tr>
                 </s:iterator>
             </table>

@@ -35,7 +35,7 @@
             <div class='<s:property value="displayFormulario"/>'>
                 <s:form action="editarCategoria">
                     <s:textfield name="categoria.idCategoria" type="hidden"/>
-                    <s:textfield name="categoria.nombreCategoria" label="Nombre Categoría" required="true"/>
+                    <s:textfield name="categoria.nombreCategoria" label="Nombre Categoría" required="true" maxlength="45"/>
                     <s:submit value="Actualizar"/>
                 </s:form>
             </div>

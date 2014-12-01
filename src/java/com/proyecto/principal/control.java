@@ -189,6 +189,12 @@ public class control extends ActionSupport {
         return SUCCESS;
     }
 
+    public String principalError() {
+        String ejecutar = principal();
+        addFieldError("user","Usuario y/o Password no valido");
+        return SUCCESS;
+    }
+
     public String administrar() {
         existenciasArticulo = urlPermisoArticulos();
         menuAction.generarMenuAdministrador();

@@ -8,52 +8,6 @@ and open the template in the editor.
     Author     : ferna_000
 */
 
-@font-face {
-	font-family: 'iconos';
-	src:url('../fonts/iconos.eot?vgtiw1');
-	src:url('../fonts/iconos.eot?#iefixvgtiw1') format('embedded-opentype'),
-		url('../fonts/iconos.woff?vgtiw1') format('woff'),
-		url('../fonts/iconos.ttf?vgtiw1') format('truetype'),
-		url('../fonts/iconos.svg?vgtiw1#iconos') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-	font-family: 'iconos';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-exit:before {
-	content: "\e605";
-}
-.icon-numbered-list:before {
-	content: "\e600";
-}
-.icon-cabinet:before {
-	content: "\e601";
-}
-.icon-home:before {
-	content: "\e602";
-}
-.icon-profile:before {
-	content: "\e603";
-}
-.icon-users:before {
-	content: "\e604";
-}
-
-
-
 body{
     font-size: 16px;
 }
@@ -73,6 +27,10 @@ header figure{
 header figure img{
     border-radius: 8px;
     box-shadow: 6px 6px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+header figure img:hover{
+    box-shadow: 6px 6px 5px 0px rgba(0, 102, 255, 0.75);
 }
 
 header #logo{
@@ -171,8 +129,10 @@ section table#listaTabla tr.tablaContenido{
 #s-articulos article{
 	border: 1px dashed #285C85;
 	display: inline-block;
+        height: 20em;
 	margin: 1em;
 	padding: 0.5em;
+        vertical-align: top;
 	width: 28%;
 }
 
@@ -223,16 +183,10 @@ section table#listaTabla tr.tablaContenido{
 	*/
 }
 
-.center{
-    text-align: center;
-}
-
-.left{
-    float: left;
-}
-
-.right{
-    float: right;
+.imgMenuAdm {
+    margin-bottom: 2.5em;
+    height: 11em;
+    width: 11em;
 }
 
 .tablaInformativa{
@@ -248,4 +202,16 @@ section table#listaTabla tr.tablaContenido{
 
 .displayTrue{
     display: run-in;
+}
+
+.center{
+    text-align: center;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
 }

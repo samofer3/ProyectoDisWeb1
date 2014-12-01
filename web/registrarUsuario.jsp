@@ -34,8 +34,8 @@
         <section id="login">
             <h1>Registra un nuevo usuario</h1>
             <s:form action="registrarUsuario">
-                <s:textfield name="nombreUsuario" label="Nombre Usuario" required="true"/>
-                <s:password name="password" label="Password" required="true"/>
+                <s:textfield name="nombreUsuario" label="Nombre Usuario" required="true" maxlength="40"/>
+                <s:password name="password" label="Password" required="true" maxlength="20"/>
                 <s:select name="permiso" label="Permiso" list="#{'1':'Básico Sucursal', '2':'Control Sucursal', '3':'Control Total'}" id="permiso"/>
                 <s:select name="sucursal" label="Sucursal" list="listaSucursales" listKey="idSucursal" listValue="nombreSucursal" required="true" id="sucursal"/>
                 <s:submit value="Registrar"/>
@@ -51,7 +51,9 @@
                     <tr class="tablaContenido">
                         <td><s:property value="nombreUsuario"/></td>
                         <td><s:property value="permiso"/></td>
-                        <td><s:property value="sucursal.idSucursal"/></td>
+                        <td><s:iterator value="listaSucursales">
+                            <s:if test="idSucursal==sucursal.idSucursal"><s:property value="nombreSucursal" /></s:if>
+                            </s:iterator></td>
                     </tr>
                 </s:iterator>
             </table>

@@ -20,7 +20,6 @@ public class loginAction extends ActionSupport implements SessionAware, ModelDri
                 sessionAttributes.put("user", user);
                 return "success";
             } else{
-                addFieldError("user","Usuario y/o Password no valido");
                 return "input"; 
             }
     }

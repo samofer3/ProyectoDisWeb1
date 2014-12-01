@@ -36,8 +36,8 @@
             <div class='<s:property value="displayFormulario"/>'>
                 <s:form action="editarUsuario">
                     <s:hidden name="usuario.idUsuario" />
-                    <s:textfield name="usuario.nombreUsuario" label="Nombre Usuario" required="true"/>
-                    <s:password name="usuario.password" label="Password" required="true" placeholder="Introduzca password"/>
+                    <s:textfield name="usuario.nombreUsuario" label="Nombre Usuario" required="true" maxlength="40"/>
+                    <s:password name="usuario.password" label="Password" required="true" placeholder="Introduzca password" maxlength="20"/>
                     <s:select name="usuario.permiso" label="Permiso" list="#{'1':'Básico Sucursal', '2':'Control Sucursal', '3':'Control Total'}" value="usuario.permiso" id="permiso"/>
                     <s:select name="usuario.sucursal.idSucursal" label="Sucursal" list="listaSucursales" listKey="idSucursal" listValue="nombreSucursal" value="usuario.sucursal.idSucursal" required="true" id="sucursal"/>
                     <s:submit value="Registrar"/>

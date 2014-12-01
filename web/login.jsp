@@ -32,8 +32,8 @@
         </nav>
         <section id="login">
             <s:form action="loguear">
-                <s:textfield name="user" label="Usuario" />
-                <s:password name="password" label="Password" />
+                <s:textfield name="user" label="Usuario" maxlength="40"/>
+                <s:password name="password" label="Password" maxlength="20"/>
                 <s:submit value="Enviar"/>
             </s:form>
         </section>

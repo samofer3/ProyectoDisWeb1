@@ -33,7 +33,7 @@
         <section id="login">
             <h1>Registra una nueva categoría de productos</h1>
             <s:form action="registrarCategoria">
-                <s:textfield name="nombreCategoria" label="Nombre Categoría" required="true"/>
+                <s:textfield name="nombreCategoria" label="Nombre Categoría" required="true" maxlength="45"/>
                 <s:submit value="Registrar"/>
             </s:form>
             <table border="1" id="listaTabla" class="tablaInformativa">

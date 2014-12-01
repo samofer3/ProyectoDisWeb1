@@ -32,9 +32,12 @@ public class contenidoAction extends ActionSupport {
 
     public String crearContenidoInfo(ArrayList<Articulosucursal> articulos) {
         StringBuffer contenido = new StringBuffer();
+        contenido.append((String) "\t<div class='center'>\n");
         if (articulos.isEmpty()) {
             contenido.append((String) "<h2>Este artículo no se encuentra en ninguna sucursal</h2>");
+            contenido.append((String) "\t<br/>\n");
             contenido.append((String) "\t<input name='button' type='button' onclick='window.close();' value='Cerrar esta pestaña' />\n");
+            contenido.append((String) "\t<br/><br/><br/>\n");
         } else {
             contenido.append((String) "<article>\n");
             contenido.append((String) "\t<h2>" + obtenerNombreArticulo(articulos.get(0).getArticulo()).get(0).getNombreArticulo() + "</h2>\n");
@@ -50,7 +53,7 @@ public class contenidoAction extends ActionSupport {
             contenido.append((String) "\t</div>\n");
             contenido.append((String) "</article>\n");
         }
-
+        contenido.append((String) "</div>\n");
         return new String(contenido);
     }
 
@@ -156,7 +159,8 @@ public class contenidoAction extends ActionSupport {
 
     public String generarContenidoAdministrador(char permiso) {
         StringBuffer contenido = new StringBuffer();
-        //MODIFICAR POR IMAGENES
+
+        contenido.append((String) "<div class='center'>\n");
         contenido.append((String) "<a href='articulo'><img src='img/Articulos.png' class='imgMenuAdm'/></a>\n");
         if (permiso == '2') {
             contenido.append((String) "<a href='categoria'><img src='img/Categorias.png' class='imgMenuAdm'/></a>\n");
@@ -167,7 +171,7 @@ public class contenidoAction extends ActionSupport {
             contenido.append((String) "<a href='empresa'><img src='img/Pagina.png' class='imgMenuAdm'/></a>\n");
         }
         contenido.append((String) "<a href='logout'><img src='img/Salir.png' class='imgMenuAdm'/></a>\n");
-
+        contenido.append((String) "<div/>\n");
         return new String(contenido);
     }
 

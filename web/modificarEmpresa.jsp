@@ -33,7 +33,7 @@
         <section id="login">
             <h1>Modificar Empresa</h1>
             <s:form action="modificarEmpresa" enctype="multipart/form-data" method="POST">
-                <s:textfield name="empresa.nombreEmpresa" label="Nombre Empresa" placeholder="Introduzca un nuevo nombre"/>
+                <s:textfield name="empresa.nombreEmpresa" label="Nombre Empresa" placeholder="Introduzca un nuevo nombre" maxlength="80"/>
                 <s:radio name="empresa.fondoImagen" label="Imagen" list="#{'img/Fondo1.png':'Gris', 'img/Fondo2.png':'Azul', 'img/Fondo3.png':'Verde', 'img/Fondo4.png':'Amarillo', 'img/Fondo5.png':'Violeta', 'img/Fondo6.png':'Rojo'}" />
                 <s:file name="banner" label="Banner(Recomendado 1000x120px)" type="image"/>
                 <s:file name="logo" label="Logo(Recomendado 90x120px)" type="image"/>

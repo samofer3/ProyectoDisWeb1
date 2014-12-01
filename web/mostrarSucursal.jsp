@@ -35,10 +35,10 @@
             <div class='<s:property value="displayFormulario"/>'>
                 <s:form action="editarSucursal">
                     <s:textfield name="sucursal.idSucursal" type="hidden"/>
-                    <s:textfield name="sucursal.nombreSucursal" label="Nombre Surcursal" required="true"/>
-                    <s:textfield name="sucursal.direccion" label="Dirección" required="true"/>
-                    <s:textfield name="sucursal.numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" maxLength="7"/>
-                    <s:textfield name="sucursal.email" type="email" label="E-mail" required="true"/>
+                    <s:textfield name="sucursal.nombreSucursal" label="Nombre Surcursal" required="true" maxlength="45"/>
+                    <s:textfield name="sucursal.direccion" label="Dirección" required="true" maxlength="100"/>
+                    <s:textfield name="sucursal.numeroTelefonico" type="number" label="Numero Telefonico (229)" required="true" min="1000000" max="9999999"/>
+                    <s:textfield name="sucursal.email" type="email" label="E-mail" required="true" maxlength="45"/>
                     <s:submit value="Actualizar"/>
                 </s:form>
             </div>

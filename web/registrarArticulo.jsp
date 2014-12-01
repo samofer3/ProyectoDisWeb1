@@ -34,10 +34,10 @@
         <section id="login">
             <h1>Registra un nuevo artículo</h1>
             <s:form action="registrarArticulo" enctype="multipart/form-data" method="POST">
-                <s:textfield name="nombreArticulo" label="Nombre Artículo" required="true"/>
-                <s:textfield name="descripcion" label="Descripción del artículo" required="true"/>
+                <s:textfield name="nombreArticulo" label="Nombre Artículo" required="true" maxlength="45"/>
+                <s:textfield name="descripcion" label="Descripción del artículo" required="true" maxlength="200"/>
                 <s:file name="direccionImg" label="Imagen (Recomendado 90x120px)" type="image"/>
-                <s:textfield name="precio" label="Precio" type="number" required="true"/>
+                <s:textfield name="precio" label="Precio" type="number" required="true" min="1" max="99999"/>
                 <s:select name="categoria" label="Categoria" list="listaCategorias" listKey="idCategoria" listValue="nombreCategoria" required="true" id="categoria"/>
                 <s:submit value="Registrar"/>
             </s:form>
@@ -52,10 +52,9 @@
                     <tr class="tablaContenido">
                         <td><s:property value="nombreArticulo"/></td>
                         <td><s:property value="precio"/></td>
-                        <%--<td><s:iterator value="listaCategorias">
-                            <s:if test="%{#idCategoria==categoria.idCategoria}"><s:property value="nombreCategoria" /></s:if>
-                            </s:iterator></td>--%>
-                        <td><s:select list="listaCategorias" listKey="idCategoria" listValue="nombreCategoria" value="categoria.idCategoria" disabled="true" /></td>
+                        <td><s:iterator value="listaCategorias">
+                            <s:if test="idCategoria==categoria.idCategoria"><s:property value="nombreCategoria" /></s:if>
+                            </s:iterator></td>
                     </tr>
                 </s:iterator>
             </table>
