@@ -251,3 +251,5 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+INSERT INTO `proyecto`.`empresa` (`nombreEmpresa` ,`fondoImagen` ,`banner` ,`logo` ,`orientacion`) VALUES ('Doña Chenca', 'img/Fondo.png', 'img/Banner.png', 'img/Logo.png', 'left');
+INSERT INTO `proyecto`.`usuario` (`idUsuario` ,`nombreUsuario` ,`password` ,`permiso` ,`sucursalIdSucursal`) VALUES ('1', 'usuario', 'password', '3', NULL);
