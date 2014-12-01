@@ -91,6 +91,7 @@ public class contenidoAction extends ActionSupport {
         StringBuffer contenido = new StringBuffer();
         if (articulos.isEmpty()) {
             contenido.append((String) "<h2>No se encuentra registrado ningún artículo</h2>");
+            contenido.append((String) "\t<br/><br/><br/><br/><br/>\n");
         } else {
             for (Articulo articulo : articulos) {
                 contenido.append((String) "<article>\n");
