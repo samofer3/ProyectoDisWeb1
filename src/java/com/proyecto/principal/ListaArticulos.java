@@ -34,12 +34,9 @@ public class ListaArticulos extends ActionSupport {
     public String generarArticulos() {
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         int id = Integer.parseInt(request.getParameter("idCategoria"));
-        int numeroArticulos = numeroArticulos();
-        if (numeroArticulos != 0) {
-            listadoArticulos(id);
-            contenidoAction.generarContenido(listaArticulos);
-            contenido = contenidoAction.getContenido();
-        }
+        listadoArticulos(id);
+        contenidoAction.generarContenido(listaArticulos);
+        contenido = contenidoAction.getContenido();
         return SUCCESS;
     }
 
@@ -54,7 +51,7 @@ public class ListaArticulos extends ActionSupport {
     }
 
     public void listadoInfoArticulos(int id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
             listaArticuloSucursal = (ArrayList<Articulosucursal>) session.createQuery("from Articulosucursal a where articulo = " + id).list();
@@ -70,7 +67,7 @@ public class ListaArticulos extends ActionSupport {
         try {
             session.beginTransaction();
             if (id == 0) {
-                listaArticulos = (ArrayList<Articulo>) session.createQuery("from Articulo").list();
+                listaArticulos = (ArrayList<Articulo>) session.createQuery("from Articulo ORDER BY IdArticulo DESC").setMaxResults(15).list();
             } else {
                 listaArticulos = (ArrayList<Articulo>) session.createQuery("select a from Articulo a, Categoria c where categoriaIdCategoria=idCategoria and categoriaidCategoria = " + id).list();
             }

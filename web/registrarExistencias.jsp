@@ -35,7 +35,7 @@
             <s:form action="registrarExistencias">
                 <s:select name="articuloIdArticulo" label="Artículo" list="listaArticulos" listKey="idArticulo" listValue="nombreArticulo" />
                 <s:hidden name="sucursalIdSucursal" value="%{#session['user'].idSucursal}" />
-                <s:textfield name="unidad" label="Unidades" required="true" type="number" min="1" max="9999999"/>
+                <s:textfield name="unidad" label="Unidades" required="true" type="number" min="0" max="9999999"/>
                 <s:submit value="Registrar"/>
             </s:form>
             <table border="1" id="listaTabla" class="tablaInformativa">

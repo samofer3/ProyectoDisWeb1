@@ -109,6 +109,7 @@ public class ControlSucursal extends ActionSupport{
             tx.commit();
             mensaje = "Sucursal eliminada con éxito";
         }catch (HibernateException e) {
+            mensaje = "No se puede eliminar la sucursal ya que tiene artículos en existencias";
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {

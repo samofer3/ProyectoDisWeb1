@@ -46,6 +46,7 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
     private String displayLista = "displayTrue";
     private String mensaje = "";
     private ServletContext context;
+    private String idArticulo;
 
     public String agregaArticulo() throws Exception {
         mensaje = "";
@@ -60,14 +61,22 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            if (direccionImgContentType.equals("image/jpeg")) {
-                setDireccionImgFileName(articulo.getIdArticulo() + ".jpg");
+            int idArticulo = (Integer) session.save(articulo);
+            tx.commit();
+            tx = session.beginTransaction();
+            if (direccionImgContentType == null) {
+                setDireccionImgFileName("default.png");
             } else {
-                setDireccionImgFileName(articulo.getIdArticulo() + ".png");
+                if (direccionImgContentType.equals("image/jpeg")) {
+                    setDireccionImgFileName(idArticulo + ".jpg");
+                } else {
+                    setDireccionImgFileName(idArticulo + ".png");
+                }
+                FilesUtil.saveFile(getDireccionImg(), getDireccionImgFileName(), context.getRealPath("") + File.separator + direccionImgPath);
             }
-            FilesUtil.saveFile(getDireccionImg(), getDireccionImgFileName(), context.getRealPath("") + File.separator + direccionImgPath);
             articulo.setDireccionImg(direccionImgPath + "/" + getDireccionImgFileName());
-            session.save(articulo);
+            articulo.setIdArticulo(idArticulo);
+            session.update(articulo);
             tx.commit();
             mensaje = "Articulo añadido con éxito";
         } catch (HibernateException e) {
@@ -146,6 +155,7 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
         try {
             tx = session.beginTransaction();
             Integer id = Integer.parseInt(request.getParameter("idArticulo"));
+            eliminarExistencias(id);
             Articulo borrar = (Articulo) session.get(Articulo.class, id);
             session.delete(borrar);
             tx.commit();
@@ -159,6 +169,28 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
             session.close();
         }
         return SUCCESS;
+    }
+    
+    public void eliminarExistencias(int id){
+        Session session;
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            ArrayList<Articulosucursal> lista = (ArrayList<Articulosucursal>)session.createQuery("from Articulosucursal where articuloIdArticulo = "+id).list();
+            for(Articulosucursal articulo : lista){
+                Articulosucursal borrar = (Articulosucursal) session.get(Articulosucursal.class, articulo.getIdArticuloSucursal());
+                session.delete(borrar);
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public String agregaExistencias() {
@@ -177,10 +209,10 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
             if (!unidadVieja.isEmpty()) {
                 articuloSucursal.setIdArticuloSucursal(unidadVieja.get(0).getIdArticuloSucursal());
                 session.update(articuloSucursal);
-            }else{
+            } else {
                 session.save(articuloSucursal);
             }
-            mensaje="Existencia modificada con exito";
+            mensaje = "Existencia modificada con exito";
             tx.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -340,6 +372,14 @@ public class ControlArticulo extends ActionSupport implements ServletContextAwar
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public String getIdArticulo() {
+        return idArticulo;
+    }
+
+    public void setIdArticulo(String idArticulo) {
+        this.idArticulo = idArticulo;
     }
 
     @Override

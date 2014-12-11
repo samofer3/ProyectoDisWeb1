@@ -34,9 +34,10 @@
             <h1>Menú</h1>
             <h2><s:property value="mensaje"/></h2>
             <div id="enlacesSection">
-                <a href='mostrarCategorias'>Lista de categorías</a>
+                <a href='mostrarCategorias'>Lista categorías</a>
                 <a href='anadirCategoria'>Registrar categoría</a>
             </div>
+            <br/><br/>
         </section>
         <footer>
             <p>Varios colaboradores</p>

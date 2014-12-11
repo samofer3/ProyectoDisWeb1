@@ -37,6 +37,7 @@
                 <a href='mostrarUsuarios'>Lista de usuarios</a>
                 <a href='anadirUsuario'>Registrar usuarios</a>
             </div>
+            <br/><br/>
         </section>
         <footer>
             <p>Varios colaboradores</p>

@@ -21,7 +21,7 @@ header{
 header figure{
     display: inline-block;
     margin: 1em 0 0.5em 0;
-    
+
 }
 
 header figure img{
@@ -68,6 +68,10 @@ nav ul{
 
 nav ul li a{
     text-decoration: none;
+}
+
+nav hr{
+    margin: 1px 0;
 }
 
 section{
@@ -127,60 +131,66 @@ section table#listaTabla tr.tablaContenido{
 }
 
 #s-articulos article{
-	border: 1px dashed #285C85;
-	display: inline-block;
-        height: 20em;
-	margin: 1em;
-	padding: 0.5em;
-        vertical-align: top;
-	width: 28%;
+    border: 1px dashed #285C85;
+    display: inline-block;
+    height: 20em;
+    margin: 1em;
+    padding: 0.5em;
+    vertical-align: top;
+    width: 28%;
+}
+
+#s-articulos article#articleUnico{
+    height: auto;
+    text-align: left;
+    width: 40%;
 }
 
 #s-articulos article figure img{
-	transition: 0.2s;
-	width: 80px;
+    transition: 0.2s;
+    width: 80px;
 }
 
 #s-articulos article figure{
-	border-radius: 3px;
-        vertical-align: top;
-	width: 20%;
+    border-radius: 3px;
+    vertical-align: top;
+    width: 20%;
 }
 
 #s-articulos article .a-texto{
-	width: 65%;
+    width: 65%;
 }
 
 #s-articulos article figure, #s-articulos article .a-texto{
-	display: inline-block;
-	margin: 0.5em;
-	top: 0;
+    display: inline-block;
+    margin: 0.5em;
+    top: 0;
 }
 
 #s-articulos article h2{
-	margin: 0 0 0.1em 1em;
+    margin: 0 0 0.1em 1em;
 }
 
 #s-articulos article p strong{
-	background: #81D2EF;
+    background: #81D2EF;
 }
 
 #s-articulos article p a{
-        color: #F56C29;
-        cursor: pointer;
-	text-decoration: none;
+    color: #F56C29;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .escale:hover{
     transform: scale(1.2,1.2);
-	/*
-	-webkit-transform:rotate(-360deg);
-	-moz-transform:rotate(-360deg);
-	-o-transform:rotate(-360deg);
-	-ms-transform:rotate(-360deg);
-	-ms-transform: skew(30deg,20deg); 
-    -webkit-transform: skew(30deg,20deg); 
-	*/
+    /*
+    -webkit-transform:rotate(-360deg);
+    -moz-transform:rotate(-360deg);
+    -o-transform:rotate(-360deg);
+    -ms-transform:rotate(-360deg);
+    -ms-transform: skew(30deg,20deg); 
+-webkit-transform: skew(30deg,20deg); 
+    */
 }
 
 .imgMenuAdm {

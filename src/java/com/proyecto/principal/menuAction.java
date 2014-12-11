@@ -37,17 +37,16 @@ public class menuAction extends ActionSupport {
     public String crearMenuAdministrador(char permiso) {
         StringBuffer menu = new StringBuffer();
 
-        menu.append((String) "\t\t\t\t<li><a href='administrar'>Menú principal</a></li>\n");
-        menu.append((String) "\t\t\t\t<li><a href='articulo'>Administrar Artículos</a></li>\n");
+        menu.append((String) "\t\t\t\t<li><a href='administrar'>Menú principal</a></li><hr/>\n");
+        menu.append((String) "\t\t\t\t<li><a href='articulo'>Administrar Artículos</a></li><hr/>\n");
         if (permiso == '2') {
-            menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
+            menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li><hr/>\n");
         } else if(permiso == '3'){
-            menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li>\n");
-            menu.append((String) "\t\t\t\t<li><a href='sucursal'>Administrar Sucursal</a></li>\n");
-            menu.append((String) "\t\t\t\t<li><a href='usuario'>Administrar Usuarios</a></li>\n");
-            menu.append((String) "\t\t\t\t<li><a href='empresa'>Administrar Pagina</a></li>\n");
+            menu.append((String) "\t\t\t\t<li><a href='categoria'>Administrar Categorias</a></li><hr/>\n");
+            menu.append((String) "\t\t\t\t<li><a href='sucursal'>Administrar Sucursal</a></li><hr/>\n");
+            menu.append((String) "\t\t\t\t<li><a href='usuario'>Administrar Usuarios</a></li><hr/>\n");
+            menu.append((String) "\t\t\t\t<li><a href='empresa'>Administrar Pagina</a></li><hr/>\n");
         }
-        menu.append((String) "\t\t\t\t</br>\n");
         menu.append((String) "\t\t\t\t</br>\n");
         menu.append((String) "\t\t\t\t<li class='center'><a href='logout' >Salir</a></li>\n");
 

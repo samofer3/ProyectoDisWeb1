@@ -44,7 +44,7 @@ CREATE  TABLE IF NOT EXISTS `proyecto`.`articulo` (
 
   `descripcion` VARCHAR(200) NOT NULL ,
 
-  `direccionImg` VARCHAR(50) NOT NULL ,
+  `direccionImg` VARCHAR(50) ,
 
   `precio` FLOAT NOT NULL ,
 

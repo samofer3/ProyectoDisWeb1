@@ -99,6 +99,7 @@ public class ControlCategoria extends ActionSupport implements ModelDriven<Objec
             tx.commit();
             mensaje = "Categoria eliminada con éxito";
         }catch (HibernateException e) {
+            mensaje = "No se puede eliminar la categoría ya que tiene artículos registrados";
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }finally {

@@ -68,7 +68,7 @@ public class ControlEmpresa extends ActionSupport implements ServletContextAware
                     setLogoFileName("Logo.png");
                 }
                 FilesUtil.saveFile(getLogo(), getLogoFileName(), context.getRealPath("") + File.separator + logoPath);
-                empresa.setLogo(logoPath + "/" + getBannerFileName());
+                empresa.setLogo(logoPath + "/" + getLogoFileName());
             }else{
                 empresa.setLogo(logoRespaldo);
             }

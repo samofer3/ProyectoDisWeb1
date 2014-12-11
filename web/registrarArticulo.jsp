@@ -37,7 +37,7 @@
                 <s:textfield name="nombreArticulo" label="Nombre Artículo" required="true" maxlength="45"/>
                 <s:textfield name="descripcion" label="Descripción del artículo" required="true" maxlength="200"/>
                 <s:file name="direccionImg" label="Imagen (Recomendado 90x120px)" type="image"/>
-                <s:textfield name="precio" label="Precio" type="number" required="true" min="1" max="99999"/>
+                <s:textfield name="precio" label="Precio" type="number" required="true" min="0" max="99999"/>
                 <s:select name="categoria" label="Categoria" list="listaCategorias" listKey="idCategoria" listValue="nombreCategoria" required="true" id="categoria"/>
                 <s:submit value="Registrar"/>
             </s:form>

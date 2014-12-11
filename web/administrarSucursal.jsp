@@ -34,9 +34,10 @@
             <h1>Menú</h1>
             <h2><s:property value="mensaje"/></h2>
             <div id="enlacesSection">
-                <a href='mostrarSucursales'>Lista de sucursales</a>
+                <a href='mostrarSucursales'>Lista sucursales</a>
                 <a href='anadirSucursal'>Registrar sucursal</a>
             </div>
+            <br/><br/>
         </section>
         <footer>
             <p>Varios colaboradores</p>
